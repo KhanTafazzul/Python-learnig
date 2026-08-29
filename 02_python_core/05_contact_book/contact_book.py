@@ -4,29 +4,117 @@ CONTACTS_FILE = "02_python_core/05_contact_book/contacts.txt"
 
 def add_contact():
     print("\n--- Add New Contact ---")
-    # TODO: Prompt user for name, phone, and email
-    # TODO: Validate that name is not empty
-    # TODO: Open contacts.txt in append mode ('a') and save contact as Name,Phone,Email
-    pass
+    name = input("Enter name: ").strip()
+    phone = input("Enter phone: ").strip()
+    email = input("Enter email: ").strip()
+    
+    try:
+        if name == "":
+            raise ValueError("Error: Name cannot be empty!")
+    except ValueError as e:
+        print(e)
+        return
+        
+    try:
+        with open(CONTACTS_FILE, 'a') as file:
+            file.write(f"{name},{phone},{email}\n")
+        print("Contact added successfully!")
+    except Exception as e:
+        print(f"An error occurred while saving the contact: {e}")
 
 def view_contacts():
-    print("\n--- All Contacts ---")
-    # TODO: Check if file exists. If not, print a message and return.
-    # TODO: Open file in read mode ('r'), loop through lines, and print nicely.
-    # TODO: Wrap file operations in try-except block for safety.
-    pass
+    if not os.path.exists(CONTACTS_FILE):
+        print("No contacts found!")
+        return  
+        
+    try:
+        print("\n--- All Contacts ---")
+        with open(CONTACTS_FILE, 'r') as file:
+            has_contacts = False
+            for line in file:
+                line = line.strip()
+                if not line:
+                    continue  # skip empty lines
+                
+                name, phone, email = line.split(",")
+                print(f"Name : {name}")
+                print(f"Phone : {phone}")
+                print(f"Email : {email}")
+                print("-" * 20)
+                has_contacts = True
+                
+            if not has_contacts:
+                print("No contacts found!")
+    except Exception as e:
+        print(f"An error occurred while reading contacts: {e}")
 
 def search_contact():
+    if not os.path.exists(CONTACTS_FILE):
+        print("No contacts found!")
+        return 
+        
     print("\n--- Search Contact ---")
-    # TODO: Prompt user for name to search
-    # TODO: Open file, loop through lines, and print matches (case-insensitive)
-    pass
+    search_name = input("Enter name to search: ").strip()
+    found = False
+   
+    try:
+        with open(CONTACTS_FILE, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if not line:
+                    continue  # skip empty lines
+                    
+                name, phone, email = line.split(",")
+                if search_name.lower() == name.lower():
+                    print(f"Name : {name}")
+                    print(f"Phone : {phone}")
+                    print(f"Email : {email}")
+                    print("-" * 20)
+                    found = True
+            
+            if not found:
+                print(f"Contact '{search_name}' was not found.")
+    except Exception as e:
+        print(f"An error occurred while searching contacts: {e}")
 
 def delete_contact():
+    if not os.path.exists(CONTACTS_FILE):
+        print("No contacts found!")
+        return 
+        
     print("\n--- Delete Contact ---")
-    # TODO: Prompt user for name to delete
-    # TODO: Read all lines, filter out matching contact(s), write remaining lines back
-    pass
+    delete_name = input("Enter name to delete: ").strip()
+    
+    remaining_contacts = []  # List to store the contacts we want to keep
+    deleted = False          # Flag to track if we found and deleted the contact
+    
+    try:
+        # Step 1: Read and filter the contacts
+        with open(CONTACTS_FILE, 'r') as file:
+            for line in file:
+                stripped_line = line.strip()
+                if not stripped_line:
+                    continue  # skip empty lines
+                    
+                name, phone, email = stripped_line.split(",")
+                
+                # If it matches, we skip it (don't add to remaining_contacts)
+                if name.lower() == delete_name.lower():
+                    deleted = True
+                    print(f"Name: {name} is deleted from your contact book")
+                else:
+                    # If it doesn't match, we keep the original line
+                    remaining_contacts.append(line)
+        
+        # Step 2: Write the remaining contacts back to the file
+        if deleted:
+            with open(CONTACTS_FILE, 'w') as file:
+                file.writelines(remaining_contacts)
+        else:
+            print(f"Contact '{delete_name}' was not found in the database.")
+               
+    except Exception as e:
+        print(f"An error occurred while deleting contact: {e}")
 
 def main():
     while True:
