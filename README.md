@@ -61,7 +61,7 @@ Welcome to your practice space! This repository tracks daily progress, hands-on 
 - [x] Exception Handling Basics (`try`, `except`, `else`, `finally`)
 - [x] Built-in Exception Types (`ZeroDivisionError`, `ValueError`, `TypeError`, `KeyError`, `IndexError`, `FileNotFoundError`)
 - [x] Clean Code Architecture & Modular File Notes
-- [ ] Data Structures Deep-Dive (Tuples, Sets)
+- [x] Data Structures Deep-Dive (Tuples, Sets)
 - [ ] Modules, Packages & Virtual Environments (`venv`)
 - [ ] Advanced Problem Solving & Algorithm Logic
 

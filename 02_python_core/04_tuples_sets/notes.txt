@@ -1,0 +1,102 @@
+================================================================================
+               DATA STRUCTURES DEEP-DIVE: TUPLES & SETS
+================================================================================
+
+1. TOPIC: TUPLES AND SETS (CORE PYTHON)
+--------------------------------------------------------------------------------
+Key Concepts:
+
+- TUPLES:
+  - Ordered, immutable collection of items.
+  - Defined using parentheses `(value1, value2, ...)` or just comma-separated values.
+  - Immutability: Once created, elements CANNOT be changed, added, or removed.
+  - Important Gotcha: To create a tuple with a single element, you MUST use a trailing comma: `single_element = (5,)`. Without the comma, Python treats it as a standard parenthesized integer.
+
+- SETS:
+  - Unordered, unindexed, and unique collection of items.
+  - Defined using curly braces `{value1, value2, ...}` or the `set()` function.
+  - Duplicates are NOT allowed: If you add duplicates, they are automatically removed.
+  - Important Gotcha: To create an empty set, you MUST use `set()`. Using `{}` creates an empty dictionary!
+  - Set elements must be hashable (e.g., strings, numbers, tuples). Lists and dicts cannot be set elements.
+
+
+2. DEMONSTRATION CODE
+--------------------------------------------------------------------------------
+    # --- Tuple Example ---
+    point = (10, 20)
+    print("X Coordinate:", point[0])
+    
+    # Tuple Unpacking
+    x, y = point
+    print(f"Unpacked X: {x}, Y: {y}")
+    
+    # Demonstrating Immutability
+    try:
+        point[0] = 15
+    except TypeError as e:
+        print("❌ Cannot change a tuple:", e)
+
+    # --- Set Example ---
+    fruits_set = {"Apple", "Banana", "Apple"} # Duplicates removed
+    print("Unique Fruits:", fruits_set) # Output: {'Apple', 'Banana'}
+    
+    # Set Operations
+    set_a = {1, 2, 3}
+    set_b = {3, 4, 5}
+    
+    print("Union (|):", set_a | set_b)           # {1, 2, 3, 4, 5} (All items from both sets)
+    print("Intersection (&):", set_a & set_b)    # {3} (Common items)
+    print("Difference (-):", set_a - set_b)      # {1, 2} (Items in A but not in B)
+    print("Symmetric Diff (^):", set_a ^ set_b)  # {1, 2, 4, 5} (Items in A or B, but not both)
+
+
+3. SUMMARY NOTES FOR REVISION
+--------------------------------------------------------------------------------
+1. When to use a Tuple?
+   - For constant datasets that should not change during the program (e.g. coordinates, RGB values, database config).
+   - When returning multiple values from a function.
+   - Tuples are slightly faster than lists and use less memory.
+
+2. When to use a Set?
+   - To remove duplicates from a list: `unique_list = list(set(original_list))`.
+   - For fast membership testing (e.g., checking `if user in active_users:` is much faster in a set than a list).
+   - For mathematical set operations (union, intersection, etc.).
+
+
+4. PRACTICE TASKS & PROBLEMS
+--------------------------------------------------------------------------------
+
+[Task 1: Tuple Operations & Immutability]
+File to edit: `02_python_core/04_tuples_sets/01_tuples_practice.py`
+
+Steps to complete:
+1. Create a function `get_student_record(name, age, grade, city)`:
+   - Returns a tuple containing `(name, age, grade, city)`.
+2. In the test section:
+   - Call the function with some details (e.g., "Aman", 22, "A", "Delhi").
+   - Unpack the returned tuple into 4 variables: `std_name`, `std_age`, `std_grade`, `std_city`.
+   - Print a nice message using these variables.
+3. In a `try-except` block:
+   - Attempt to modify the `grade` in the returned tuple directly (e.g., `record[2] = "A+"`).
+   - Catch the `TypeError` and print a friendly message explaining that tuples cannot be modified.
+
+---
+
+[Task 2: Set Operations & Analytics]
+File to edit: `02_python_core/04_tuples_sets/02_sets_practice.py`
+
+Steps to complete:
+You have two lists representing registrations for two days of a coding event:
+`day1_registrations = ["aman@test.com", "priya@test.com", "rahul@test.com", "aman@test.com", "sneha@test.com"]`
+`day2_registrations = ["rahul@test.com", "amit@test.com", "priya@test.com", "vikram@test.com"]`
+
+Write a Python script that:
+1. Converts both lists into sets to clean up any duplicate registrations.
+2. Calculates and prints:
+   - Total **unique** attendees across both days (Union).
+   - Attendees who came on **both** days (Intersection).
+   - Attendees who registered **only on Day 1** (Difference: Day 1 - Day 2).
+   - Attendees who registered for **only one of the days** (Symmetric Difference).
+3. Adds a new email `"kabir@test.com"` to the Day 2 set and prints the updated set.
+4. Removes `"vikram@test.com"` from the Day 2 set safely (using `.discard()` or `.remove()`) and prints the updated set.
+================================================================================

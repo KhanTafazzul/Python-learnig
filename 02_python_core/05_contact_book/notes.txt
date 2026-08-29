@@ -1,0 +1,58 @@
+================================================================================
+               MINI PROJECT: TERMINAL CONTACT BOOK
+================================================================================
+
+1. OVERVIEW
+--------------------------------------------------------------------------------
+This project synthesizes everything you have learned so far in Month 2:
+- File Handling (reading and writing files)
+- Exception Handling (handling invalid inputs and file issues)
+- Tuples & Sets (using clean data records)
+
+You will build a terminal-based contact book where users can add, view, search, 
+and delete contacts. The contacts will be saved persistently to a text file.
+
+
+2. PROJECT REQUIREMENTS
+--------------------------------------------------------------------------------
+Your program should save contacts to a file named `contacts.txt` in the format:
+`Name,Phone,Email`
+
+Features to implement:
+1. Add Contact:
+   - Prompt the user for Name, Phone number, and Email.
+   - Validate that name is not empty.
+   - Use basic exception handling if anything goes wrong during input or saving.
+   - Append the contact to `contacts.txt`.
+
+2. View Contacts:
+   - Read and print all contacts from `contacts.txt`.
+   - Handle the `FileNotFoundError` gracefully if the contact book is empty / doesn't exist yet.
+   - Format the output nicely so it's easy to read.
+
+3. Search Contact:
+   - Ask the user for a search query (name).
+   - Search the file line-by-line.
+   - Print all matching contacts (case-insensitive).
+
+4. Delete Contact:
+   - Ask the user for a contact's name to delete.
+   - Read all contacts from the file, filter out the contact(s) with the matching name.
+   - Write the remaining contacts back to `contacts.txt`.
+   - Let the user know if the contact was successfully deleted or not found.
+
+5. Interactive Menu:
+   - Run in a loop (`while True:`) with options:
+     1. Add Contact
+     2. View Contacts
+     3. Search Contact
+     4. Delete Contact
+     5. Exit
+
+
+3. IMPLEMENTATION TEMPLATE
+--------------------------------------------------------------------------------
+File to write your code: `02_python_core/05_contact_book/contact_book.py`
+
+Start by opening the template file and filling in the functions. Use the provided comments to guide your code!
+================================================================================
