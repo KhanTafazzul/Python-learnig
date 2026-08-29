@@ -69,7 +69,7 @@ Welcome to your practice space! This repository tracks daily progress, hands-on 
 - [x] 📝 **Safe File Writer & Reader** (`01_write`, `02_read`)
 - [x] 📓 **Daily Task Logger & Mini Journal App** (`03_append/03_journal_app.py`)
 - [x] 🛡️ **Safe Exception Handler Suite** (`exception_handling/`)
-- [ ] 📇 **Terminal Contact Book** (Saved to persistent file)
+- [x] 📇 **Terminal Contact Book** (Saved to persistent file)
 - [ ] 🔐 **Password Generator & Expense Tracker**
 
 ---
@@ -105,10 +105,12 @@ Welcome to your practice space! This repository tracks daily progress, hands-on 
 pythonbasics/
 │
 ├── 01_python_fundamentals/   # Basics, Loops, Functions, Lists & Dicts
-├── 02_python_core/           # File Handling (Write, Read, Append) & Exceptions
+├── 02_python_core/           # File Handling, Exceptions, Data Structures & Mini Projects
 │   ├── 01_write/             # Writing files ('w' mode)
 │   ├── 02_read/              # Reading files ('r' mode)
 │   ├── 03_append/            # Appending files ('a' mode)
+│   ├── 04_tuples_sets/       # Tuples & Sets deep-dive operations
+│   ├── 05_contact_book/      # Terminal Contact Book (saved to persistent file)
 │   └── exception_handling/   # Try-Except-Else-Finally practice & guides
 ├── 03_problem_solving/       # Logic building & algorithmic challenges
 └── 04_html_css/              # HTML5, CSS3 & Responsive Web Design
