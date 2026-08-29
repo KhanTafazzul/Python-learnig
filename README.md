@@ -111,6 +111,7 @@ pythonbasics/
 │   ├── 03_append/            # Appending files ('a' mode)
 │   ├── 04_tuples_sets/       # Tuples & Sets deep-dive operations
 │   ├── 05_contact_book/      # Terminal Contact Book (saved to persistent file)
+│   ├── 06_modules_packages/  # Modules, Packages & Virtual Environments (venv)
 │   └── exception_handling/   # Try-Except-Else-Finally practice & guides
 ├── 03_problem_solving/       # Logic building & algorithmic challenges
 └── 04_html_css/              # HTML5, CSS3 & Responsive Web Design
