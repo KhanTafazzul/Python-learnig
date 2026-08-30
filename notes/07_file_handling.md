@@ -98,3 +98,32 @@ else:
 # 2. Create folders safely
 os.makedirs("my_folder", exist_ok=True)  # exist_ok=True prevents crash if folder exists
 ```
+
+---
+
+## 💡 Key Tips & Revision Concepts
+
+### A. Tracking Line Numbers with `enumerate(file, start)`
+*   **Description:** Iterates line-by-line while keeping a counter of the current line number.
+*   **Syntax:** `enumerate(file_iterator, start_value)`
+```python
+with open("sample.txt", "r") as file:
+    # Starts counting from 1 instead of default 0
+    for line_no, line in enumerate(file, 1):
+        print(f"Line {line_no}: {line.strip()}")
+```
+
+### B. List Appending vs Index Assignment
+*   **Description:** When reading file contents into lists dynamically, use `.append()` instead of index assignments like `lst[i]`.
+*   **Why?** An empty list `lst = []` has length 0. Attempting to assign to a non-existent index (e.g. `lst[0] = "goal"`) raises an `IndexError`. `.append()` dynamically grows the list as data is read.
+
+### C. Direct Execution Gate: `if __name__ == "__main__":`
+*   **Description:** Standard Python pattern that checks if the script is running directly (not imported as a module in another file) before executing main functions.
+*   **Syntax:**
+```python
+def main():
+    print("Program started!")
+
+if __name__ == "__main__":
+    main()
+```
