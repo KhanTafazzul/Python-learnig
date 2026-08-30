@@ -1,0 +1,114 @@
+================================================================================
+                    PYTHON CORE NOTES: FILE HANDLING
+================================================================================
+
+WHAT IS FILE HANDLING? (In Simple Words)
+File handling is the process of opening, reading, writing, and modifying files 
+stored on your computer's hard drive using Python. When a program runs, its 
+variables disappear when it closes. Files allow you to save data permanently.
+
+WHY DO WE USE IT?
+- To save user data (like contacts, high scores, or logs).
+- To read configuration files.
+- To process datasets (like reading csv or txt files).
+
+================================================================================
+                             1. OPENING A FILE
+================================================================================
+Python uses the `open()` function to open a file.
+
+- Syntax:
+  `file_object = open("filename.txt", "mode")`
+
+- Crucial Rule: Always use a Context Manager (`with` statement):
+  ```python
+  # Best Practice Syntax:
+  with open("filename.txt", "mode") as file:
+      # Perform read/write actions
+  # File automatically closes here!
+  ```
+  * Why use `with`? It automatically closes the file even if your code crashes, 
+    preventing data loss, lockouts, or memory leaks.
+
+================================================================================
+                               2. FILE MODES
+================================================================================
+The mode specifies what you want to do with the file:
+
+* `'r'` (Read Mode):
+  - Opens file for reading.
+  - If the file does NOT exist, Python crashes with a `FileNotFoundError`.
+  - This is the default mode if you don't specify one.
+
+* `'w'` (Write Mode):
+  - Opens file for writing.
+  - If the file exists, it OVERWRITES (completely deletes) the old content.
+  - If the file does NOT exist, it creates a new empty file.
+
+* `'a'` (Append Mode):
+  - Opens file for adding text at the end of it.
+  - Keeps the existing contents untouched.
+  - If the file does NOT exist, it creates a new empty file.
+
+================================================================================
+                           3. READING & WRITING METHODS
+================================================================================
+
+--------------------------------------------------------------------------------
+A. Writing Methods (used in 'w' or 'a' modes)
+--------------------------------------------------------------------------------
+1. `file.write(string)`
+   - Writes a single string to the file.
+   - Note: It does not add a new line automatically. You must add `\n` to the end of the string.
+2. `file.writelines(list_of_strings)`
+   - Writes multiple strings from a list into the file.
+   - Example:
+     ```python
+     with open("names.txt", "w") as file:
+         file.write("Aman\n")
+         file.writelines(["Priya\n", "Rahul\n"])
+     ```
+
+--------------------------------------------------------------------------------
+B. Reading Methods (used in 'r' mode)
+--------------------------------------------------------------------------------
+1. `file.read()`
+   - Reads the ENTIRE file into a single long string.
+   - Warning: Do not use on extremely large files as it uses a lot of RAM.
+2. `file.readline()`
+   - Reads just ONE line at a time as a string. Moves the cursor to the next line.
+3. `file.readlines()`
+   - Reads all lines in the file and puts them into a LIST of strings.
+4. `for line in file:` (Best Practice)
+   - Iterates through the file line-by-line efficiently. Uses very little memory.
+   - Always use `.strip()` to clean the newline (`\n`) characters from the lines.
+   - Example:
+     ```python
+     with open("names.txt", "r") as file:
+         for line in file:
+             print(line.strip())  # strip() removes trailing "\n"
+     ```
+
+================================================================================
+                         4. SYSTEM HELPERS (os MODULE)
+================================================================================
+When working with files, Python's built-in `os` module helps you manage directories and paths.
+
+* `import os`
+* `os.path.exists("filename.txt")`
+  - Returns `True` if the file exists, `False` if it does not. Useful before reading files to avoid crashes.
+* `os.makedirs("folder_name", exist_ok=True)`
+  - Creates a new folder. If `exist_ok=True`, it won't crash if the folder is already there.
+
+- Example of safe reading check:
+  ```python
+  import os
+  
+  filename = "contacts.txt"
+  if os.path.exists(filename):
+      with open(filename, "r") as file:
+          print(file.read())
+  else:
+      print("Warning: The file does not exist yet!")
+  ```
+================================================================================

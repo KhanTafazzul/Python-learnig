@@ -1,0 +1,113 @@
+================================================================================
+               PYTHON CORE NOTES: MODULES, PACKAGES & LIBRARIES
+================================================================================
+
+WHAT IS A MODULE? (In Simple Words)
+A module is simply a Python file (ending in `.py`) that contains Python code—like 
+variables, functions, or classes—that you can import and reuse in other files. 
+Think of it like a toolbox containing specific tools.
+
+WHAT IS A PACKAGE?
+A package is a folder containing multiple modules grouped together. It allows 
+you to organize larger projects. A package usually contains a special file called 
+`__init__.py` (though this is optional in modern Python).
+
+WHY DO WE USE THEM?
+- **Code Reusability:** Write a function once and use it in many different programs.
+- **Organization:** Divide a massive program into smaller, easy-to-manage files.
+- **Use Community Code:** Import thousands of free libraries built by other developers.
+
+================================================================================
+                               1. IMPORT SYNTAX
+================================================================================
+There are different ways to import modules in Python:
+
+1. Import the Entire Module:
+   `import math`
+   - Usage: You must prefix functions with the module name.
+   - Example: `print(math.sqrt(16))`
+
+2. Import with an Alias (Shortcut):
+   `import random as rd`
+   - Usage: Uses the shortcut name to save typing.
+   - Example: `roll = rd.randint(1, 6)`
+
+3. Import Specific Functions:
+   `from math import sqrt, pi`
+   - Usage: Imports only what you need. You do NOT use the module name prefix.
+   - Example: `print(sqrt(16))`
+
+4. Import Everything (Not Recommended):
+   `from math import *`
+   - Warning: Imports all functions. This can cause naming conflicts (e.g. if you write your own function named `sqrt`). Avoid doing this.
+
+================================================================================
+                           2. CORE STANDARD LIBRARIES
+================================================================================
+Python comes with many pre-installed standard libraries. Here are the two most important ones for core Python:
+
+--------------------------------------------------------------------------------
+A. The `random` Module
+--------------------------------------------------------------------------------
+Used to generate random numbers and make random selections.
+* `import random`
+* Core functions:
+  - `random.randint(a, b)`: Returns a random integer between a and b (inclusive).
+    * `dice = random.randint(1, 6)`
+  - `random.choice(sequence)`: Selects a random element from a list, tuple, or string.
+    * `move = random.choice(["Rock", "Paper", "Scissors"])`
+  - `random.random()`: Returns a random decimal float between 0.0 and 1.0 (excluding 1.0).
+  - `random.uniform(a, b)`: Returns a random float between a and b.
+  - `random.shuffle(list)`: Shuffles the elements of a list in-place.
+
+--------------------------------------------------------------------------------
+B. The `datetime` Module
+--------------------------------------------------------------------------------
+Used for working with dates and times.
+* `from datetime import datetime, date, timedelta`
+* Core classes & functions:
+  - `date.today()`: Returns today's calendar date (YYYY-MM-DD).
+  - `datetime.now()`: Returns current date and time down to milliseconds.
+  - `timedelta(days=X, weeks=Y, hours=Z)`: Represents a duration of time. Used for math.
+    * `yesterday = date.today() - timedelta(days=1)`
+  - `strftime(format_string)`: Converts a datetime object into a formatted text string (Date ➔ String).
+    * `now = datetime.now()`
+    * `formatted = now.strftime("%Y-%m-%d %H:%M")`  # e.g., "2026-08-30 10:37"
+  - `strptime(string, format_string)`: Converts a formatted text string back into a datetime object (String ➔ Date).
+    * `dt = datetime.strptime("30-08-2026", "%d-%m-%Y")`
+
+================================================================================
+                          3. CREATING YOUR OWN MODULES
+================================================================================
+You can easily create your own module! 
+
+Step 1: Create a file named `my_math.py` with this code:
+```python
+def add(x, y):
+    return x + y
+
+def multiply(x, y):
+    return x * y
+```
+
+Step 2: Create another file named `main.py` in the same folder and import it:
+```python
+import my_math
+
+result1 = my_math.add(5, 10)
+result2 = my_math.multiply(3, 4)
+print(result1, result2)  # Outputs: 15 12
+```
+
+================================================================================
+                  THE `if __name__ == "__main__":` STATEMENT
+================================================================================
+In custom modules, you often see this check:
+```python
+if __name__ == "__main__":
+    # Code in this block runs ONLY if you run this file directly.
+    # It will NOT run if this file is imported by another script.
+```
+- Why use it? It prevents test code, menus, or sample executions inside your 
+  module from running automatically when someone imports your module elsewhere.
+================================================================================
