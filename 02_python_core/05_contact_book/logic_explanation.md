@@ -111,84 +111,71 @@ def search_contact():
 ```
 
 ### D. `delete_contact()`
-* Checks if the contacts file exists.
-* Reads all lines from the file, skipping empty lines.
-* Compares each contact's name with the target name (case-insensitive).
-  * If it matches, sets the `deleted` flag to `True` and skips adding that line to the output list.
-  * If it does not match, stores the line in a temporary `remaining_contacts` list.
-* If a deletion occurred, overwrites the contacts file using write mode (`'w'`) with the contents of `remaining_contacts`.
+* Checks if the contacts file exists. If not, it warns the user and returns.
+  ```python
+  if not os.path.exists(CONTACTS_FILE):
+      print("No contacts found!")
+      return 
+  ```
 
-```python
-def delete_contact():
-    if not os.path.exists(CONTACTS_FILE):
-        print("No contacts found!")
-        return 
-        
-    print("\n--- Delete Contact ---")
-    delete_name = input("Enter name to delete: ").strip()
-    
-    remaining_contacts = []  # List to store the contacts we want to keep
-    deleted = False          # Flag to track if we found and deleted the contact
-    
-    try:
-        # Step 1: Read and filter the contacts
-        with open(CONTACTS_FILE, 'r') as file:
-            for line in file:
-                stripped_line = line.strip()
-                if not stripped_line:
-                    continue  # skip empty lines
-                    
-                name, phone, email = stripped_line.split(",")
-                
-                # If it matches, we skip it (don't add to remaining_contacts)
-                if name.lower() == delete_name.lower():
-                    deleted = True
-                    print(f"Name: {name} is deleted from your contact book")
-                else:
-                    # If it doesn't match, we keep the original line
-                    remaining_contacts.append(line)
-        
-        # Step 2: Write the remaining contacts back to the file
-        if deleted:
-            with open(CONTACTS_FILE, 'w') as file:
-                file.writelines(remaining_contacts)
-        else:
-            print(f"Contact '{delete_name}' was not found in the database.")
-               
-    except Exception as e:
-        print(f"An error occurred while deleting contact: {e}")
-```
+* **Step 1: Read and filter the contacts**
+  Reads all lines from the file, skipping empty lines. Compares each contact's name with the target name (case-insensitive). If it matches, sets the `deleted` flag to `True` and prints a deletion message. If it does not match, stores the line in a temporary `remaining_contacts` list.
+  ```python
+  with open(CONTACTS_FILE, 'r') as file:
+      for line in file:
+          stripped_line = line.strip()
+          if not stripped_line:
+              continue  # skip empty lines
+              
+          name, phone, email = stripped_line.split(",")
+          
+          # If it matches, we skip it (don't add to remaining_contacts)
+          if name.lower() == delete_name.lower():
+              deleted = True
+              print(f"Name: {name} is deleted from your contact book")
+          else:
+              # If it doesn't match, we keep the original line
+              remaining_contacts.append(line)
+  ```
+
+* **Step 2: Write the remaining contacts back to the file**
+  If a deletion occurred, overwrites the contacts file using write mode (`'w'`) with the contents of `remaining_contacts`. If not found, prints a message.
+  ```python
+  if deleted:
+      with open(CONTACTS_FILE, 'w') as file:
+          file.writelines(remaining_contacts)
+  else:
+      print(f"Contact '{delete_name}' was not found in the database.")
+  ```
 
 ---
 
 ## 3. Interactive Menu (`main()`)
-* Runs in an infinite loop (`while True`) showing the option menu.
-* Redirects user input to run the appropriate functions (`add_contact`, `view_contacts`, `search_contact`, `delete_contact`).
-* Safely breaks the loop to exit when `5` is selected.
+* Runs in an infinite loop (`while True`) showing the option menu and redirecting the user's choice:
 
-```python
-def main():
-    while True:
-        print("\n=== TERMINAL CONTACT BOOK ===")
-        print("1. Add Contact")
-        print("2. View All Contacts")
-        print("3. Search Contact")
-        print("4. Delete Contact")
-        print("5. Exit")
-        
-        choice = input("Enter choice (1-5): ").strip()
-        
-        if choice == '1':
-            add_contact()
-        elif choice == '2':
-            view_contacts()
-        elif choice == '3':
-            search_contact()
-        elif choice == '4':
-            delete_contact()
-        elif choice == '5':
-            print("Exiting Contact Book. Goodbye!")
-            break
-        else:
-            print("Invalid choice! Please enter a number between 1 and 5.")
-```
+  * **Option 1 (Add Contact):**
+    ```python
+    if choice == '1':
+        add_contact()
+    ```
+  * **Option 2 (View All Contacts):**
+    ```python
+    elif choice == '2':
+        view_contacts()
+    ```
+  * **Option 3 (Search Contact):**
+    ```python
+    elif choice == '3':
+        search_contact()
+    ```
+  * **Option 4 (Delete Contact):**
+    ```python
+    elif choice == '4':
+        delete_contact()
+    ```
+  * **Option 5 (Exit Menu Loop):**
+    ```python
+    elif choice == '5':
+        print("Exiting Contact Book. Goodbye!")
+        break
+    ```

@@ -49,82 +49,74 @@ def check_win(guess, dice_sum):
 ### C. `main()`
 * Keeps track of the player's `balance` (starts at 100).
 * Runs inside a `while True` loop:
+
   1. **User Action Selection:** Prompts player to press `[Enter]` to bet, or type `'exit'` to quit, or `'clear'` to reset balance to $100.
+     ```python
+     choice = input("Press [Enter] to bet, type 'exit' to quit, or 'clear' to reset balance: ").lower().strip()
+     
+     if choice == "exit":
+         print("\nThanks for playing!")
+         print(f"You walked away with: ${balance}")
+         break
+     elif choice == "clear":
+         balance = 100
+         print("Balance has been reset to $100.")
+         continue
+     ```
+
   2. **Broke Check:** If the balance is `<= 0`, prints game over and exits the loop.
+     ```python
+     if balance <= 0:
+         print("\nYou are out of money! Game Over.")
+         break
+     ```
+
   3. **Bet Amount & Validation:** Uses a `try-except ValueError` block to safely convert input to an integer. Validates that the bet is positive and does not exceed the current balance.
+     ```python
+     try:
+         bet = int(input("Enter your bet amount: "))
+     except ValueError:
+         print("Invalid input! Please enter a valid whole number.")
+         continue
+         
+     if bet <= 0:
+         print("Bet amount must be greater than $0.")
+         continue
+     if bet > balance:
+         print(f"You cannot bet more than your current balance (${balance}).")
+         continue
+     ```
+
   4. **Guess & Validation:** Prompts the user for `'l'`, `'h'`, or `'s'` and validates the input.
+     ```python
+     guess = input("Enter your guess (l for Low (2-6), h for High (8-12), s for Seven (7)): ").lower().strip()
+     if guess not in ["l", "h", "s"]:
+         print("Invalid guess! Please enter 'l', 'h', or 's'.")
+         continue
+     ```
+
   5. **Roll and Display:** Calls `roll_dice()`, calculates the sum, and prints the individual rolls and total sum.
+     ```python
+     die1, die2 = roll_dice()
+     dice_sum = die1 + die2
+     print(f"\nRolling the dice... You rolled: {die1} and {die2} (Total: {dice_sum})")
+     ```
+
   6. **Results & Payout Logic:**
      * If the guess is correct and the sum is exactly 7 ➔ player gets a **3x payout** (`balance += bet * 3`).
      * If the guess is correct and the sum is any other number ➔ player gets a **1x payout** (`balance += bet`).
      * If incorrect ➔ player loses the bet amount (`balance -= bet`).
-
-```python
-def main():
-    # Starting balance for the player
-    balance = 100
-    
-    print("==========================================")
-    print("Welcome to the Casino Dice Betting Game!")
-    print("==========================================")
-    
-    # Main game loop
-    while True:
-        print(f"\nCurrent Balance: ${balance}")
-        
-        # Check if the player wants to exit or reset the game
-        choice = input("Press [Enter] to bet, type 'exit' to quit, or 'clear' to reset balance: ").lower().strip()
-        
-        if choice == "exit":
-            print("\nThanks for playing!")
-            print(f"You walked away with: ${balance}")
-            break
-        elif choice == "clear":
-            balance = 100
-            print("Balance has been reset to $100.")
-            continue
-            
-        # Check if the player is broke before placing a new bet
-        if balance <= 0:
-            print("\nYou are out of money! Game Over.")
-            break
-            
-        # Get and validate the bet amount
-        try:
-            bet = int(input("Enter your bet amount: "))
-        except ValueError:
-            print("Invalid input! Please enter a valid whole number.")
-            continue
-            
-        if bet <= 0:
-            print("Bet amount must be greater than $0.")
-            continue
-        if bet > balance:
-            print(f"You cannot bet more than your current balance (${balance}).")
-            continue
-            
-        # Get and validate the guess
-        guess = input("Enter your guess (l for Low (2-6), h for High (8-12), s for Seven (7)): ").lower().strip()
-        if guess not in ["l", "h", "s"]:
-            print("Invalid guess! Please enter 'l', 'h', or 's'.")
-            continue
-            
-        # Roll the dice and calculate sum
-        die1, die2 = roll_dice()
-        dice_sum = die1 + die2
-        print(f"\nRolling the dice... You rolled: {die1} and {die2} (Total: {dice_sum})")
-        
-        # Check results and apply payout multipliers
-        if check_win(guess, dice_sum) and dice_sum == 7:
-            # Seven wins pay 3x
-            balance += bet * 3
-            print(f"🎉 Amazing! You win 3x payout! You rolled exactly Seven!")
-        elif check_win(guess, dice_sum):
-            # Low/High wins pay 1x
-            balance += bet
-            print(f"✅ You win! Your guess was correct.")
-        else:
-            # Loser loses the bet amount
-            balance -= bet
-            print(f"❌ You lose! Better luck next time.")
-```
+     ```python
+     if check_win(guess, dice_sum) and dice_sum == 7:
+         # Seven wins pay 3x
+         balance += bet * 3
+         print(f"🎉 Amazing! You win 3x payout! You rolled exactly Seven!")
+     elif check_win(guess, dice_sum):
+         # Low/High wins pay 1x
+         balance += bet
+         print(f"✅ You win! Your guess was correct.")
+     else:
+         # Loser loses the bet amount
+         balance -= bet
+         print(f"❌ You lose! Better luck next time.")
+     ```
