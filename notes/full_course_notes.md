@@ -4,46 +4,120 @@ This file contains detailed notes from the start of the course up to Flask and c
 
 ---
 
-# 1. Python Basics
+## 📚 Quick Notes of Core Learning Modules
+Here is a quick summary of the core Python learning modules in the course. For complete definitions, syntaxes, and examples, refer to their dedicated files:
+
+### 1. 🔢 [01: Operators](file:///d:/Aman/pythonbasics/notes/01_operators_notes.md)
+*   **What it does:** Performs calculations, checks conditions, and modifies variables.
+*   **Summary:** Covers Arithmetic (`+`, `-`, `*`, `/`, `%`, `**`, `//`), Comparison (`==`, `!=`, `>`, `<`), Logical (`and`, `or`, `not`), Assignment (`+=`, `-=`), Membership (`in`), and Identity (`is`).
+*   **Quick Syntax:**
+    ```python
+    x = 10
+    x += 5
+    is_valid = x > 12 and x is not None
+    ```
+
+### 2. 🔁 [02: Loops & Control Flow](file:///d:/Aman/pythonbasics/notes/02_loops_notes.md)
+*   **What it does:** Decision making and repeating code execution blocks.
+*   **Summary:** Covers conditional tests (`if/elif/else`), running fixed-count iterations (`for` loops), running condition-based loops (`while`), and changing loop behaviors (`break` and `continue`).
+*   **Quick Syntax:**
+    ```python
+    for i in range(5):
+        if i == 3:
+            break
+        print(i)
+    ```
+
+### 3. 🔤 [03: String Methods](file:///d:/Aman/pythonbasics/notes/03_string_methods_notes.md)
+*   **What it does:** Processes, formats, and transforms string text.
+*   **Summary:** Covers lowercase (`.lower()`), uppercase (`.upper()`), capitalizations (`.title()`, `.capitalize()`), trimming whitespace (`.strip()`), searching (`.startswith()`, `.find()`), and splitting/joining (`.split()`, `.join()`).
+*   **Quick Syntax:**
+    ```python
+    text = "  python programming  "
+    clean_text = text.strip().title()  # Output: "Python Programming"
+    ```
+
+### 4. 🧮 [04: Math Functions](file:///d:/Aman/pythonbasics/notes/04_math_functions_notes.md)
+*   **What it does:** Provides built-in and external mathematical methods.
+*   **Summary:** Covers built-in arithmetic (`abs()`, `sum()`, `min()`, `max()`, `divmod()`, `round()`), power/roots (`math.sqrt()`, `pow()`), rounding limits (`math.ceil()`, `math.floor()`, `math.trunc()`), geometry/trigonometry, precision comparisons (`math.isclose()`), and combinations (`math.comb()`).
+*   **Quick Syntax:**
+    ```python
+    import math
+    print(math.sqrt(25))                 # Output: 5.0
+    print(math.isclose(0.1 + 0.2, 0.3))  # Output: True
+    ```
+
+### 5. 📦 [05: Data Structures](file:///d:/Aman/pythonbasics/notes/05_data_structures_notes.md)
+*   **What it does:** Stores, groups, and maps multiple items.
+*   **Summary:** Covers ordered/mutable Lists (`[]`), ordered/immutable Tuples (`()`), key-value Dictionaries (`{}`), and unique-value Sets (`{}`).
+*   **Quick Syntax:**
+    ```python
+    student = {"name": "Aman", "grades": [90, 85]}
+    unique_numbers = {1, 2, 2, 3}  # Output set: {1, 2, 3}
+    ```
+
+### 6. 📁 [06: File Handling](file:///d:/Aman/pythonbasics/notes/06_file_handling_notes.md)
+*   **What it does:** Reads data from or writes data permanently to storage files.
+*   **Summary:** Covers open modes (Write `'w'`, Read `'r'`, Append `'a'`), line-by-line reading, and using `with open(...) as file:` to guarantee automatic closing of resources.
+*   **Quick Syntax:**
+    ```python
+    with open("contacts.txt", "a") as file:
+        file.write("Aman,12345,aman@test.com\n")
+    ```
+
+### 7. 🛡️ [07: Exception Handling](file:///d:/Aman/pythonbasics/notes/07_exception_handling_notes.md)
+*   **What it does:** Safely catches runtime errors so programs run continuously without crash.
+*   **Summary:** Covers `try` (run risky code), `except` (catch specific errors), `else` (run if no error occurred), and `finally` (always execute at the end).
+*   **Quick Syntax:**
+    ```python
+    try:
+        number = int(input("Enter number: "))
+    except ValueError:
+        print("Error: Invalid numeric input.")
+    ```
+
+### 8. 🛠️ [08: Libraries, Modules & Environments](file:///d:/Aman/pythonbasics/notes/08_libraries_and_modules_notes.md)
+*   **What it does:** Code partitioning (import/export), setting up isolated folders, and package installations.
+*   **Summary:** Covers modular imports (`import math`), creating isolated virtual environments (`venv`), installing third-party packages (`pip install`), and exporting package listings (`pip freeze > requirements.txt`).
+*   **Quick Syntax:**
+    ```bash
+    python -m venv venv
+    venv\Scripts\activate
+    pip install colorama
+    ```
+
+---
+
+# 1. Python Fundamentals & Primitives
 
 ## 1.1 print()
-
 ### Definition
 `print()` is used to display output on the screen.
-
 ### Syntax
 ```python
 print("Hello")
 print(10)
 print(a)
 ```
-
 ### Explanation
 It shows text, numbers, or the value of a variable.
-
 ### Example
 ```python
 name = "Aman"
 print("My name is", name)
 ```
 
----
-
 ## 1.2 Variables
-
 ### Definition
 Variables are used to store data in memory.
-
 ### Syntax
 ```python
 name = "Aman"
 age = 20
 is_student = True
 ```
-
 ### Explanation
 A variable holds a value that can be used later.
-
 ### Example
 ```python
 x = 5
@@ -51,67 +125,31 @@ y = x + 3
 print(y)
 ```
 
----
-
 ## 1.3 Input
-
 ### Definition
 `input()` is used to take input from the user.
-
 ### Syntax
 ```python
 name = input("Enter your name: ")
 ```
-
 ### Explanation
 It waits for user input and stores the typed value as a string.
-
 ### Example
 ```python
 age = input("Enter your age: ")
 print("Your age is", age)
 ```
 
----
-
-## 1.4 Strings
-
-### Definition
-A string is text enclosed in quotes.
-
-### Syntax
-```python
-text = "Hello"
-text2 = 'Python'
-```
-
-### Explanation
-Strings store characters and can be manipulated using methods.
-
-### Common methods
-```python
-len("Hello")         # returns length
-"Hello".upper()     # converts to uppercase
-"Hello".lower()     # converts to lowercase
-"Hello".replace("H", "J")
-```
-
----
-
-## 1.5 Numbers
-
+## 1.4 Numbers
 ### Definition
 Numbers are used for calculations.
-
 ### Types
 ```python
 age = 20          # int
 price = 12.5      # float
 ```
-
 ### Explanation
 Python supports integers and floating-point numbers.
-
 ### Example
 ```python
 a = 10
@@ -122,91 +160,16 @@ print(a * b)
 print(a / b)
 ```
 
----
-
-## 1.6 Operators
-
-### Definition
-Operators perform operations on values.
-
-### Types
-- Arithmetic: `+`, `-`, `*`, `/`, `%`, `**`
-- Comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
-- Logical: `and`, `or`, `not`
-
-### Example
-```python
-x = 5
-print(x > 3)
-print(x == 5 and x < 10)
-```
-
----
-
-## 1.7 if / elif / else
-
-### Definition
-These are used for decision-making.
-
-### Syntax
-```python
-if condition:
-    # code
-elif another_condition:
-    # code
-else:
-    # code
-```
-
-### Explanation
-The program checks conditions in order and runs the matching block.
-
-### Example
-```python
-age = 18
-if age >= 18:
-    print("Adult")
-else:
-    print("Minor")
-```
-
----
-
-## 1.8 Loops
-
-### For loop
-```python
-for i in range(5):
-    print(i)
-```
-
-### While loop
-```python
-count = 0
-while count < 5:
-    print(count)
-    count += 1
-```
-
-### Explanation
-Loops repeat code multiple times.
-
----
-
-## 1.9 Functions
-
+## 1.5 Functions
 ### Definition
 Functions are reusable blocks of code.
-
 ### Syntax
 ```python
 def greet(name):
     print("Hello", name)
 ```
-
 ### Explanation
 Functions help organize code and avoid repetition.
-
 ### Example
 ```python
 def add(a, b):
@@ -215,7 +178,6 @@ def add(a, b):
 result = add(2, 3)
 print(result)
 ```
-
 ### Common built-in functions
 - `print()`
 - `input()`
@@ -227,86 +189,79 @@ print(result)
 
 ---
 
-# 2. Python Core
-
-## 2.1 Lists
-
+# 2. Step 1: Operators
 ### Definition
-A list stores multiple items in one variable.
-
-### Syntax
+Operators perform operations on values.
+### Types
+- Arithmetic: `+`, `-`, `*`, `/`, `%`, `**`
+- Comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- Logical: `and`, `or`, `not`
+### Example
 ```python
-fruits = ["apple", "banana", "mango"]
+x = 5
+print(x > 3)
+print(x == 5 and x < 10)
 ```
-
-### Common methods
-```python
-fruits.append("orange")
-fruits.remove("banana")
-fruits.sort()
-len(fruits)
-```
-
-### Explanation
-Lists are ordered and mutable.
 
 ---
 
-## 2.2 Tuples
+# 3. Step 2: Loops & Control Flow
 
+## 3.1 if / elif / else
 ### Definition
-A tuple is similar to a list but cannot be changed.
-
+These are used for decision-making.
 ### Syntax
 ```python
-point = (10, 20)
+if condition:
+    # code
+elif another_condition:
+    # code
+else:
+    # code
+```
+### Explanation
+The program checks conditions in order and runs the matching block.
+### Example
+```python
+age = 18
+if age >= 18:
+    print("Adult")
+else:
+    print("Minor")
 ```
 
+## 3.2 Loops
+### For loop
+```python
+for i in range(5):
+    print(i)
+```
+### While loop
+```python
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+```
 ### Explanation
-Tuples are immutable and useful for fixed data.
+Loops repeat code multiple times.
 
 ---
 
-## 2.3 Dictionaries
+# 4. Step 3: Strings & String Methods
 
+## 4.1 Strings Basics
 ### Definition
-A dictionary stores data as key-value pairs.
-
+A string is text enclosed in quotes.
 ### Syntax
 ```python
-student = {"name": "Aman", "age": 20}
+text = "Hello"
+text2 = 'Python'
 ```
-
-### Common methods
-```python
-student["name"]
-student.get("age")
-student.keys()
-student.values()
-```
-
 ### Explanation
-Dictionaries are useful for organizing related data.
+Strings store characters and can be manipulated using methods.
 
----
-
-## 2.4 Sets
-
-### Definition
-A set stores unique values.
-
-### Syntax
-```python
-numbers = {1, 2, 2, 3}
-```
-
-### Explanation
-Sets remove duplicates automatically.
-
----
-
-## 2.5 String Methods
-
+## 4.2 String Methods
 ### Common methods
 ```python
 text = "python"
@@ -316,40 +271,103 @@ text.capitalize()
 text.split()
 text.strip()
 ```
-
 ### Explanation
 These methods help process and transform text.
+### Examples
+```python
+len("Hello")         # returns length
+"Hello".upper()     # converts to uppercase
+"Hello".lower()     # converts to lowercase
+"Hello".replace("H", "J")
+```
 
 ---
 
-## 2.6 File Handling
+# 5. Step 4: Math Functions
+*(Included in general Functions & Modules. Reference: [04_math_functions_notes.md](file:///d:/Aman/pythonbasics/notes/04_math_functions_notes.md) for full guide).*
 
+---
+
+# 6. Step 5: Data Structures
+
+## 6.1 Lists
+### Definition
+A list stores multiple items in one variable.
+### Syntax
+```python
+fruits = ["apple", "banana", "mango"]
+```
+### Common methods
+```python
+fruits.append("orange")
+fruits.remove("banana")
+fruits.sort()
+len(fruits)
+```
+### Explanation
+Lists are ordered and mutable.
+
+## 6.2 Tuples
+### Definition
+A tuple is similar to a list but cannot be changed.
+### Syntax
+```python
+point = (10, 20)
+```
+### Explanation
+Tuples are immutable and useful for fixed data.
+
+## 6.3 Dictionaries
+### Definition
+A dictionary stores data as key-value pairs.
+### Syntax
+```python
+student = {"name": "Aman", "age": 20}
+```
+### Common methods
+```python
+student["name"]
+student.get("age")
+student.keys()
+student.values()
+```
+### Explanation
+Dictionaries are useful for organizing related data.
+
+## 6.4 Sets
+### Definition
+A set stores unique values.
+### Syntax
+```python
+numbers = {1, 2, 2, 3}
+```
+### Explanation
+Sets remove duplicates automatically.
+
+---
+
+# 7. Step 6: File Handling
 ### Definition
 Used to read or write files.
-
 ### Syntax
 ```python
 with open("file.txt", "w") as f:
     f.write("Hello")
 ```
-
 ### Reading file
 ```python
 with open("file.txt", "r") as f:
     content = f.read()
     print(content)
 ```
-
 ### Explanation
 Files store data permanently on disk.
 
 ---
 
-## 2.7 Exceptions
-
+# 8. Step 7: Exception Handling (Exceptions)
 ### Definition
 Exceptions are errors that happen during program execution.
-
 ### Syntax
 ```python
 try:
@@ -357,38 +375,31 @@ try:
 except ValueError:
     print("Invalid input")
 ```
-
 ### Explanation
 `try` and `except` help handle errors gracefully.
 
 ---
 
-## 2.8 Modules
+# 9. Step 8: Libraries, Modules & Environments
 
+## 9.1 Modules
 ### Definition
 Modules are Python files containing useful code.
-
 ### Syntax
 ```python
 import math
 print(math.sqrt(16))
 ```
-
 ### Explanation
 Modules help reuse code and add features.
 
----
-
-## 2.9 Virtual Environments
-
+## 9.2 Virtual Environments
 ### Definition
 A virtual environment keeps project packages separate.
-
 ### Syntax
 ```bash
 python -m venv venv
 ```
-
 ### Explanation
 It prevents conflicts between different projects.
 
