@@ -5,7 +5,7 @@ from my_math import add, subtract
 
 
 # TODO: Import the entire my_math module with an alias 'mm' using 'import ... as ...'
-import my_math as math
+import my_math as mm
 
 # --- Test Section ---
 # 1. Use the imported 'add' function and print the result
@@ -16,4 +16,4 @@ b = int(input("Enter a number: "))
 
 print(add(a,b))
 print(subtract(a,b))
-print(math.multiply(a,b))
+print(mm.multiply(a,b))

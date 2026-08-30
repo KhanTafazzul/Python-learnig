@@ -115,7 +115,6 @@ def delete_contact():
                
     except Exception as e:
         print(f"An error occurred while deleting contact: {e}")
-
 def main():
     while True:
         print("\n=== TERMINAL CONTACT BOOK ===")

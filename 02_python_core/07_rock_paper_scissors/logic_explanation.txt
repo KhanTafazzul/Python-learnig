@@ -1,0 +1,59 @@
+================================================================================
+               PRACTICE PROJECT LOGIC EXPLANATION: ROCK, PAPER, SCISSORS
+================================================================================
+
+This document explains the logic structure and flow of the completed 
+Rock, Paper, Scissors terminal game.
+
+================================================================================
+1. CORE FUNCTIONS LOGIC
+================================================================================
+
+* get_computer_choice()
+  - Define a list of choices: `["rock", "paper", "scissors"]`.
+  - Use Python's built-in `random.choice(list)` function to select one element 
+    from the list randomly and return it.
+
+* determine_winner(user_choice, computer_choice)
+  - Compares the user's choice with the computer's choice.
+  - Returns `"tie"` if they chose the same item.
+  - Returns `"user"` if the user won:
+    * Rock beats Scissors.
+    * Paper beats Rock.
+    * Scissors beat Paper.
+  - Returns `"computer"` in all other cases.
+
+================================================================================
+2. GAME MENU & CONTROL FLOW (main loop)
+================================================================================
+The game runs inside a `while True` loop to allow continuous gameplay.
+
+* Score Initialization:
+  Before the loop starts, three variables keep track of the game state:
+  `user_score`, `computer_score`, and `ties_score` are initialized to 0.
+
+* Normalization & Input Validation:
+  - Takes the user input and applies `.lower().strip()` to handle mixed cases 
+    (e.g., "Rock ", "ROCK") cleanly.
+  - Checks if input is invalid: if the choice is not in `["rock", "paper", "scissors"]` 
+    (and is not a special command), it warns the user and continues to the next round.
+
+* Special Command: exit
+  - If user inputs `"exit"`, print a parting message along with the final scores, 
+    and use `break` to exit the loop.
+
+* Special Command: clear
+  - If user inputs `"clear"`, display the scores accumulated up to that point.
+  - Reset `user_score`, `computer_score`, and `ties_score` to 0.
+  - Print a confirmation message and continue back to the start of the loop.
+
+* Playing a Round:
+  - If user chose a valid game item (rock/paper/scissors), call `get_computer_choice()`.
+  - Print the choices (e.g., "You chose: Rock | Computer chose: Paper").
+  - Pass both choices to `determine_winner()`.
+  - Match the result (`"tie"`, `"user"`, or `"computer"`):
+    * If `"tie"` ➔ Increment `ties_score` and print "It's a tie!".
+    * If `"user"` ➔ Increment `user_score` and print "You win!".
+    * If `"computer"` ➔ Increment `computer_score` and print "Computer wins!".
+  - Print the current scores.
+================================================================================

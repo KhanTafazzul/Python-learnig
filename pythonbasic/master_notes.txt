@@ -1,0 +1,232 @@
+================================================================================
+                      COMPREHENSIVE PYTHON CORE MASTER NOTES
+================================================================================
+
+This file contains definitions, syntax, common functions, and explanations for 
+fundamental Python Core concepts. It is compiled from all practice sections.
+
+================================================================================
+TABLE OF CONTENTS:
+1. File Handling (Write, Read, Append)
+2. Loops (For, While, Control Statements)
+3. Data Structures (Lists, Tuples, Dictionaries, Sets)
+4. Exception Handling (Try-Except-Else-Finally)
+5. Core Standard Libraries (Random, Datetime)
+================================================================================
+
+
+================================================================================
+                        SECTION 1: FILE HANDLING
+================================================================================
+
+1. DEFINITION:
+   File handling allows you to store data permanently on a disk. Python can open, 
+   read, write, append, and close files.
+
+2. CONTEXT MANAGER (`with` statement):
+   - ALWAYS use `with open(...) as file:` to open files.
+   - It automatically closes the file after the block finishes, preventing memory 
+     leaks or corruption, even if an exception occurs.
+
+3. MODES:
+   - `'w'` (Write): Overwrites file if it exists, creates it if it doesn't.
+   - `'r'` (Read): Default mode. Opens file for reading. Errors if file doesn't exist.
+   - `'a'` (Append): Adds text to the end of the file. Creates it if it doesn't exist.
+
+4. FUNCTIONS & SYNTAX:
+
+   a. Writing to Files ('w' mode)
+      - `file.write(string)`: Writes a single string to the file.
+      - `file.writelines(list_of_strings)`: Writes a list of strings to the file.
+      - Example:
+        ```python
+        with open("goals.txt", "w") as file:
+            file.write("Learn Python File Handling\n")
+            file.writelines(["Goal 1\n", "Goal 2\n"])
+        ```
+
+   b. Reading from Files ('r' mode)
+      - `file.read()`: Reads entire file as a single string.
+      - `file.readline()`: Reads one line at a time as a string.
+      - `file.readlines()`: Reads all lines into a list of strings (including '\n').
+      - `for line in file:`: Efficiently iterates line-by-line (Best practice for memory).
+      - `line.strip()`: Removes leading/trailing spaces and newlines (`\n`).
+      - Example:
+        ```python
+        with open("goals.txt", "r") as file:
+            for line in file:
+                print(line.strip())
+        ```
+
+   c. Appending to Files ('a' mode)
+      - Adds data to the end of a file without overwriting existing content.
+      - Example:
+        ```python
+        with open("goals.txt", "a") as file:
+            file.write("Added this goal afterwards!\n")
+        ```
+
+
+================================================================================
+                            SECTION 2: LOOPS
+================================================================================
+
+1. DEFINITION:
+   Loops are used to repeat a block of code multiple times until a condition is met.
+
+2. FOR LOOPS:
+   - Used for iterating over a sequence (list, tuple, string, range).
+   - Syntax:
+     ```python
+     for i in range(1, 6):  # Starts at 1, stops before 6 (1 to 5)
+         print(i)
+     ```
+   - Useful helper: `enumerate(sequence, start=0)` (tracks index and value).
+     ```python
+     fruits = ["apple", "banana"]
+     for index, fruit in enumerate(fruits, 1):
+         print(f"{index}. {fruit}")
+     ```
+
+3. WHILE LOOPS:
+   - Repeats code as long as a specified boolean condition is True.
+   - Syntax:
+     ```python
+     count = 0
+     while count < 3:
+         print("Hello")
+         count += 1
+     ```
+
+4. CONTROL STATEMENTS:
+   - `break`: Terminate the loop immediately.
+   - `continue`: Skip the rest of the current iteration and go to the next loop step.
+   - `pass`: A null statement used as a placeholder.
+
+
+================================================================================
+                        SECTION 3: DATA STRUCTURES
+================================================================================
+
+--------------------------------------------------------------------------------
+3.1 LISTS
+--------------------------------------------------------------------------------
+- Definition: Ordered, mutable, and allows duplicate elements.
+- Syntax: `my_list = [value1, value2, ...]` or `my_list = []`
+- Common Methods:
+  - `list.append(item)`: Adds an item to the end of the list.
+  - `list.insert(index, item)`: Inserts an item at a specific index.
+  - `list.remove(item)`: Removes the first occurrence of the specified item.
+  - `list.pop(index)`: Removes and returns the item at the given index (defaults to end).
+  - `list.sort()`: Sorts the list in-place.
+  - `list.reverse()`: Reverses the elements of the list in-place.
+  - `len(list)`: Returns the number of elements.
+- Slicing: `list[start:stop:step]` (extracts subset of list).
+
+--------------------------------------------------------------------------------
+3.2 TUPLES
+--------------------------------------------------------------------------------
+- Definition: Ordered, immutable (cannot be changed after creation), allows duplicates.
+- Syntax: `my_tuple = (val1, val2, ...)`
+  - Crucial Note: A single item tuple needs a trailing comma: `single_item = (5,)`
+- Operations:
+  - Unpacking: `x, y = (10, 20)`
+  - Useful for: Read-only data, coordinates, return values from functions.
+
+--------------------------------------------------------------------------------
+3.3 DICTIONARIES
+--------------------------------------------------------------------------------
+- Definition: Unordered (ordered by insertion since 3.7), mutable, keys must be unique.
+  Stores data in Key-Value pairs.
+- Syntax: `my_dict = {"key": "value"}` or `my_dict = {}`
+- Common Methods:
+  - `dict[key] = value`: Adds or updates a key-value pair.
+  - `dict.get(key, default)`: Safely gets key value. Returns default if key is missing.
+  - `dict.keys()`: Returns a list-like view of all keys.
+  - `dict.values()`: Returns a list-like view of all values.
+  - `dict.items()`: Returns list-like view of (key, value) tuples.
+  - `dict.pop(key)`: Removes key and returns its value.
+
+--------------------------------------------------------------------------------
+3.4 SETS
+--------------------------------------------------------------------------------
+- Definition: Unordered, unindexed, unique elements (no duplicates allowed).
+- Syntax: `my_set = {val1, val2}`
+  - Note: Empty set must be created with `set()`, since `{}` creates an empty dictionary.
+- Common Methods:
+  - `set.add(item)`: Adds an item to the set.
+  - `set.remove(item)`: Removes item. Crashes if item does not exist.
+  - `set.discard(item)`: Removes item safely. Does NOT crash if item is missing.
+- Set Operations:
+  - Union (`|`): `setA | setB` (All unique items from both sets).
+  - Intersection (`&`): `setA & setB` (Items present in both sets).
+  - Difference (`-`): `setA - setB` (Items in A but not in B).
+  - Symmetric Difference (`^`): `setA ^ setB` (Items in A or B, but not both).
+
+
+================================================================================
+                       SECTION 4: EXCEPTION HANDLING
+================================================================================
+
+1. DEFINITION:
+   Used to handle runtime errors gracefully so that the program does not crash.
+
+2. STRUCTURE:
+   ```python
+   try:
+       # Code that might crash
+       num = int(input("Enter number: "))
+       result = 10 / num
+   except ValueError:
+       # Runs if input was not an integer
+       print("Invalid input! Please enter a whole number.")
+   except ZeroDivisionError:
+       # Runs if num was 0
+       print("Error: Cannot divide by zero!")
+   else:
+       # Runs ONLY if no exception happened
+       print("Division successful! Result is:", result)
+   finally:
+       # ALWAYS runs no matter what
+       print("Calculation cycle complete.")
+   ```
+
+3. COMMON BUILT-IN EXCEPTIONS:
+   - `ValueError`: Received correct type of argument but incorrect value (e.g. `int("abc")`).
+   - `ZeroDivisionError`: Divided a number by zero.
+   - `FileNotFoundError`: Tried to read a file that does not exist.
+   - `KeyError`: Searched for a dictionary key that does not exist.
+   - `IndexError`: Accessed list index that is out of range.
+   - `TypeError`: Performed operation on incompatible data type (e.g., adding string and int).
+
+
+================================================================================
+                      SECTION 5: CORE STANDARD LIBRARIES
+================================================================================
+
+--------------------------------------------------------------------------------
+5.1 RANDOM MODULE (`import random`)
+--------------------------------------------------------------------------------
+- Definition: Generates pseudo-random numbers and selections.
+- Core Functions:
+  - `random.random()`: Random float between 0.0 and 1.0 (excluding 1.0).
+  - `random.uniform(a, b)`: Random float between a and b.
+  - `random.randint(a, b)`: Random integer between a and b (inclusive).
+  - `random.choice(sequence)`: Random selection from list/tuple/string.
+  - `random.shuffle(list)`: Shuffles list in-place.
+  - `random.sample(sequence, k)`: Returns list of k unique random elements.
+
+--------------------------------------------------------------------------------
+5.2 DATETIME MODULE (`from datetime import datetime, date, time, timedelta`)
+--------------------------------------------------------------------------------
+- Definition: Supplies classes for manipulating dates and times.
+- Core Objects & Functions:
+  - `date.today()`: Returns current date object (YYYY-MM-DD).
+  - `datetime.now()`: Returns current datetime object.
+  - `timedelta(days=X, weeks=Y, ...)`: Represents duration (used for date arithmetic).
+    - Example: `tomorrow = date.today() + timedelta(days=1)`
+  - `strftime(format)`: Converts datetime object ➔ formatted string.
+    - Example: `datetime.now().strftime("%Y-%m-%d %H:%M:%S")`
+  - `strptime(string, format)`: Parses formatted string ➔ datetime object.
+    - Example: `datetime.strptime("2026-08-30", "%Y-%m-%d")`
+================================================================================

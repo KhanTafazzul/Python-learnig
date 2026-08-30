@@ -18,5 +18,6 @@ day2_set.add("kabir@test.com")
 
 # 4. Remove "vikram@test.com" from the Day 2 set safely
 # Note: discard() is safer than remove() as it doesn't raise a KeyError if the element doesn't exist.
-day2_set.discard("vikram@test.com")
+
+day2_set.discard("vikram@test.com")  # or we can use day2_set.remove("vikram@test.com") but it will raise an error if the element is not present in the set.
 print("Day 2 set after adding a new email and removing one:", day2_set)
