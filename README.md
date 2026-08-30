@@ -71,6 +71,7 @@ Welcome to your practice space! This repository tracks daily progress, hands-on 
 - [x] 🛡️ **Safe Exception Handler Suite** (`exception_handling/`)
 - [x] 📇 **Terminal Contact Book** (Saved to persistent file)
 - [x] 🎲 **Rock, Paper, Scissors Game** (with Score Keeper)
+- [ ] 🎰 **Casino Dice Betting Game** (with Payout Rules)
 - [ ] 🔐 **Password Generator & Expense Tracker**
 
 ---
@@ -114,6 +115,7 @@ pythonbasics/
 │   ├── 05_contact_book/      # Terminal Contact Book (saved to persistent file)
 │   ├── 06_modules_packages/  # Modules, Packages & Virtual Environments (venv)
 │   ├── 07_rock_paper_scissors/ # Rock, Paper, Scissors game (with random module)
+│   ├── 08_casino_dice/       # Casino Dice betting game (with random ranges)
 │   └── exception_handling/   # Try-Except-Else-Finally practice & guides
 ├── 03_problem_solving/       # Logic building & algorithmic challenges
 └── 04_html_css/              # HTML5, CSS3 & Responsive Web Design
