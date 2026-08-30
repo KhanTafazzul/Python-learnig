@@ -1,6 +1,6 @@
 # 🎲 Casino Dice Betting Game: Logic Explanation
 
-This document explains the logic structure and flow of the Casino Dice Betting Game.
+This document explains the logic structure and flow of the completed Casino Dice Betting Game.
 
 ---
 
@@ -14,28 +14,29 @@ This document explains the logic structure and flow of the Casino Dice Betting G
 
 ---
 
-## 2. Functions to Complete
-You will write the following functions in `casino_dice.py`:
+## 2. Functions & Code Walkthrough
 
 ### A. `roll_dice()`
-* Roll two separate dice using `random.randint(1, 6)`.
-* Return a tuple containing: `(die1, die2)`.
+* Simulates rolling two standard dice using `random.randint(1, 6)`.
+* Returns them grouped together as a tuple: `(die1, die2)`.
 
 ### B. `check_win(guess, dice_sum)`
-* Compare the user's `guess` (`"l"`, `"h"`, or `"s"`) with the `dice_sum`.
-* Return `True` if the guess is correct (won).
-* Return `False` if the guess is incorrect (lost).
+* Compares the user's `guess` (`"l"`, `"h"`, or `"s"`) with the `dice_sum`.
+* Returns `True` if correct, `False` otherwise.
+* Uses direct boolean returns for clean, professional Python code:
+  * For `'l'`: returns `dice_sum <= 6`
+  * For `'h'`: returns `dice_sum >= 8`
+  * For `'s'`: returns `dice_sum == 7`
 
 ### C. `main()`
-* Maintains the player's balance variable (starting at 100).
-* Contains the game loop (`while True`) that:
-  1. Prompts the user for a bet amount or to type `exit` or `clear` (resets balance to $100).
-  2. Validates that the bet is a valid integer between $1 and the player's current balance.
-  3. Prompts the user for their guess (`l`, `h`, or `s`) and validates it.
-  4. Rolls the dice and calculates the sum.
-  5. Determines if the player won or lost.
-  6. Updates the balance:
-     * If guess was `S` and won ➔ `balance += bet * 3`
-     * If guess was `L` or `H` and won ➔ `balance += bet`
-     * If lost ➔ `balance -= bet`
-  7. Checks if `balance <= 0` ➔ game over!
+* Keeps track of the player's `balance` (starts at 100).
+* Runs inside a `while True` loop:
+  1. **User Action Selection:** Prompts player to press `[Enter]` to bet, or type `'exit'` to quit, or `'clear'` to reset balance to $100.
+  2. **Broke Check:** If the balance is `<= 0`, prints game over and exits the loop.
+  3. **Bet Amount & Validation:** Uses a `try-except ValueError` block to safely convert input to an integer. Validates that the bet is positive and does not exceed the current balance.
+  4. **Guess & Validation:** Prompts the user for `'l'`, `'h'`, or `'s'` and validates the input.
+  5. **Roll and Display:** Calls `roll_dice()`, calculates the sum, and prints the individual rolls and total sum.
+  6. **Results & Payout Logic:**
+     * If the guess is correct and the sum is exactly 7 ➔ player gets a **3x payout** (`balance += bet * 3`).
+     * If the guess is correct and the sum is any other number ➔ player gets a **1x payout** (`balance += bet`).
+     * If incorrect ➔ player loses the bet amount (`balance -= bet`).

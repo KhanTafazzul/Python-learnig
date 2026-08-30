@@ -71,7 +71,7 @@ Welcome to your practice space! This repository tracks daily progress, hands-on 
 - [x] 🛡️ **Safe Exception Handler Suite** (`exception_handling/`)
 - [x] 📇 **Terminal Contact Book** (Saved to persistent file)
 - [x] 🎲 **Rock, Paper, Scissors Game** (with Score Keeper)
-- [ ] 🎰 **Casino Dice Betting Game** (with Payout Rules)
+- [x] 🎰 **Casino Dice Betting Game** (with Payout Rules)
 - [ ] 🔐 **Password Generator & Expense Tracker**
 
 ---
