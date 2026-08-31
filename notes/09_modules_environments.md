@@ -6,7 +6,7 @@ Modules and Packages help organize code and make it reusable across files.
 
 ## 1. What is a Module and Package?
 * **Module:** A single Python file (`.py`) containing variables, functions, or classes that you can import and reuse.
-* **Package:** A folder containing multiple modules grouped together.
+* **Package:** A directory containing multiple modules grouped together. It traditionally contains a special file named `__init__.py` (which tells Python that this directory should be treated as a package).
 
 ---
 
