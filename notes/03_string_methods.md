@@ -149,6 +149,17 @@ text = "apple,banana,cherry"
 result = text.split(",")
 print(result)
 # Output: ['apple', 'banana', 'cherry']
+
+> [!WARNING]
+> **Do not pass multiple single separators as a single string!**
+> If you write `text.split(",.!?")`, Python looks for the **exact sequence** `",.!?"` as one single separator. It will NOT split on each punctuation mark individually.
+> *   **Wrong:** `text.split(",.!?")` ➔ looks for the sequence `",.!?"` all together.
+> *   **Correct Way:** Replace each punctuation mark with a space first using a loop, then split:
+>     ```python
+>     for char in [".", ",", "!", "?"]:
+>         text = text.replace(char, " ")
+>     result = text.split()  # Splits on spaces automatically
+>     ```
 ```
 
 ### B. `.join()`
