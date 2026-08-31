@@ -1,0 +1,4 @@
+30-08-2026,Food,15.50,Lunch at cafe
+31-08-2026,Travel,45.00,Cab to office
+31-08-2026,Bills,120.00,Electricity bill
+31-08-2026,Shopping,35.99,Bought a t-shirt
