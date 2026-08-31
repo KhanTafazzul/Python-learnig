@@ -412,3 +412,101 @@ for row in reader:
     print(row)
 # Output: ['Aman', '20', 'Delhi, India']
 ```
+
+---
+
+## 7. Advanced String Formatting & Alignment (f-strings)
+
+Python's f-strings (`f"..."`) allow you to format values, align text, and pad spaces inside curly braces `{}` using a colon (`:`) followed by a format specifier:
+
+$$\text{\{variable : [alignment] [width] [.precision] [type]\}}$$
+
+### A. Left Alignment (`<`)
+*   **Description:** Align the text or value to the left and fill the remaining width with spaces.
+*   **Syntax:** `{variable:<width}`
+*   **Code Example:**
+    ```python
+    category = "Food"
+    print(f"|{category:<15}|")
+    ```
+*   **Output:**
+    ```text
+    |Food           |
+    ```
+
+### B. Right Alignment (`>`)
+*   **Description:** Align the text or value to the right and pad spaces on the left side.
+*   **Syntax:** `{variable:>width}`
+*   **Code Example:**
+    ```python
+    category = "Food"
+    print(f"|{category:>15}|")
+    ```
+*   **Output:**
+    ```text
+    |           Food|
+    ```
+
+### C. Center Alignment (`^`)
+*   **Description:** Align the text or value in the center, padding spaces evenly on both left and right sides.
+*   **Syntax:** `{variable:^width}`
+*   **Code Example:**
+    ```python
+    category = "Food"
+    print(f"|{category:^15}|")
+    ```
+*   **Output:**
+    ```text
+    |     Food      |
+    ```
+
+### E. Float Precision (`.Nf`)
+*   **Description:** Formats a decimal number (float) to have exactly `N` decimal places.
+*   **Syntax:** `{variable:.Nf}`
+*   **Code Example:**
+    ```python
+    amount_val = 25.5
+    print(f"Amount: {amount_val:.2f}")
+    ```
+*   **Output:**
+    ```text
+    Amount: 25.50
+    ```
+
+### F. Combining Alignment, Width, and Precision
+*   **Description:** Combine alignment (`<`, `>`, `^`), column width, and float precision together.
+*   **Syntax:** `{variable:<width.precisionf}`
+*   **Code Example:**
+    ```python
+    amount_val = 25.5
+    # Left-align, reserve 10 characters width, format with 2 decimal places
+    print(f"|{amount_val:<10.2f}|")
+    ```
+*   **Output:**
+    ```text
+    |25.50     |
+    ```
+
+### G. Building Tabular Output (Complete Example)
+*   **Description:** Putting all formatting components together to create clean, aligned vertical tables (ideal for terminal logs and expense trackers).
+*   **Code Example:**
+    ```python
+    date = "2026-08-31"
+    category = "Entertainment"
+    amount_val = 1200.0
+    description = "Movie tickets"
+
+    # Print formatted headers
+    print(f"{'Date':<12} | {'Category':<15} | {'Amount':<10} | {'Description':<20}")
+    print("-" * 67)
+    
+    # Print formatted data row
+    print(f"{date:<12} | {category:<15} | {amount_val:<10.2f} | {description:<20}")
+    ```
+*   **Output:**
+    ```text
+    Date         | Category        | Amount     | Description         
+    -------------------------------------------------------------------
+    2026-08-31   | Entertainment   | 1200.00    | Movie tickets       
+    ```
+
