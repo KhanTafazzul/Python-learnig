@@ -4,50 +4,164 @@ from datetime import datetime
 EXPENSES_FILE = "02_python_core/11_expense_tracker/expenses.txt"
 CATEGORIES = ["Food", "Travel", "Entertainment", "Bills", "Shopping", "Other"]
 
+def get_yes_no_input(prompt):
+    # Loop continuously until a valid yes/no response is given
+    while True:
+        choice = input(prompt)
+        if choice in ["y", "Y", "yes", "Yes", "YES", "YES"]:
+            return True
+        elif choice in ["n", "N", "No", "NO", "nO", "no"]:
+            return False
+        else:
+            print("please enter a valid response.")
+
 def add_expense():
-    print("\n--- 💵 Add New Expense ---")
-    # TODO 1: Ask the user for the amount spent.
-    #         - Validate that it is a positive float using try-except.
+    print("\n--- Add New Expense ---")
     
-    # TODO 2: Display the CATEGORIES list to the user with index numbers (1 to 6).
-    #         - Prompt the user to select one category.
-    #         - Validate that the chosen number is between 1 and the length of CATEGORIES.
-    
-    # TODO 3: Ask the user for a brief description (optional).
-    
-    # TODO 4: Ask the user for a date (DD-MM-YYYY) or press [Enter] to default to today's date.
-    #         - If date is entered, validate it matches the DD-MM-YYYY format using datetime.strptime().
-    #         - Otherwise, auto-assign today's date using datetime.now().strftime("%d-%m-%Y").
-    
-    # TODO 5: Save this expense to the EXPENSES_FILE by opening it in append ('a') mode.
-    #         - Save each field separated by commas: date,category,amount,description followed by a newline.
-    #         - Wrap this in a try-except block to catch any file access exceptions safely.
-    pass
+    # 1. Ask for amount and validate
+    amount_input = input("Enter the amount spent: ")
+    try:
+        amount = float(amount_input)
+        if amount <= 0:
+            print("Amount must be a positive number.")
+            return
+    except ValueError:
+        print("Invalid amount. Please enter a valid number.")
+        return
+        
+    # 2. Display categories
+    print("Categories:")
+    for i in range(len(CATEGORIES)):
+        print(f"{i + 1}. {CATEGORIES[i]}")
+        
+    # 3. Ask user for category choice and validate selection
+    try:
+        cat_choice = int(input("Select a category (1-6): "))
+        if cat_choice < 1 or cat_choice > len(CATEGORIES):
+            print("Invalid category selection.")
+            return
+        category = CATEGORIES[cat_choice - 1]
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return
+        
+    # 4. Ask for description (optional)
+    description = input("Enter a brief description (optional): ")
+    if not description:
+        description = "N/A"
+        
+    # 5. Ask for date or default to today
+    date_input = input("Enter date (DD-MM-YYYY) or press [Enter] for today: ")
+    if date_input == "":
+        date = datetime.now().strftime("%d-%m-%Y")
+    else:
+        try:
+            # Validate date matches required format
+            datetime.strptime(date_input, "%d-%m-%Y")
+            date = date_input
+        except ValueError:
+            print("Invalid date format. Please use DD-MM-YYYY.")
+            return
+            
+    # 6. Append expense details to the text file
+    try:
+        with open(EXPENSES_FILE, "a") as file:
+            file.write(f"{date},{category},{amount},{description}\n")
+        print("Expense added successfully!")
+    except Exception as error:
+        print("Error saving to file:", error)
 
 def view_expenses():
-    # TODO 6: Check if the EXPENSES_FILE exists and is not empty. If not, alert the user and return.
+    # Check if file exists and contains data
+    if not os.path.exists(EXPENSES_FILE) or os.path.getsize(EXPENSES_FILE) == 0:
+        print("No expenses logged yet.")
+        return
+        
+    total_spent = 0.0
+    print("\n" + "-" * 60)
+    print(f"{'Date':<12} | {'Category':<15} | {'Amount':<10} | {'Description':<20}")
+    print("-" * 60)
     
-    # TODO 7: Open the EXPENSES_FILE in read ('r') mode.
-    #         - Read and print each line formatted neatly in a table structure.
-    #         - Split each line using .split(",") to extract date, category, amount, and description.
-    #         - Keep a running sum of all amounts.
-    #         - Print the total spent at the bottom.
-    pass
+    # Read each line and display neatly in a tabular format
+    try:
+        with open(EXPENSES_FILE, "r") as file:
+            for line in file:
+                parts = line.strip().split(",")
+                if len(parts) == 4:
+                    date, category, amount, description = parts
+                    try:
+                        amount_val = float(amount)
+                        total_spent += amount_val
+                    except ValueError:
+                        amount_val = 0.0
+                    print(f"{date:<12} | {category:<15} | {amount_val:<10.2f} | {description:<20}")
+        print("-" * 60)
+        print(f"Total Spent: {total_spent:.2f}")
+        print("-" * 60)
+    except Exception as error:
+        print("Error reading file:", error)
 
 def filter_expenses():
-    # TODO 8: Check if the file exists and is not empty.
+    # Check if file exists and contains data
+    if not os.path.exists(EXPENSES_FILE) or os.path.getsize(EXPENSES_FILE) == 0:
+        print("No expenses logged yet.")
+        return
+        
+    # Ask user for category to filter by
+    print("Categories:")
+    for i in range(len(CATEGORIES)):
+        print(f"{i + 1}. {CATEGORIES[i]}")
+        
+    try:
+        cat_choice = int(input("Select category to filter by (1-6): "))
+        if cat_choice < 1 or cat_choice > len(CATEGORIES):
+            print("Invalid category selection.")
+            return
+        filter_cat = CATEGORIES[cat_choice - 1]
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return
+        
+    total_filtered = 0.0
+    found = False
+    print("\n" + "-" * 60)
+    print(f"{'Date':<12} | {'Category':<15} | {'Amount':<10} | {'Description':<20}")
+    print("-" * 60)
     
-    # TODO 9: Ask the user which category they want to filter by (display list of options).
-    
-    # TODO 10: Read the file line-by-line:
-    #          - Only print lines where the category matches the user's selected category.
-    #          - Keep a subtotal sum of the matched expenses and print it at the bottom.
-    pass
+    # Display only expenses matching selected category
+    try:
+        with open(EXPENSES_FILE, "r") as file:
+            for line in file:
+                parts = line.strip().split(",")
+                if len(parts) == 4:
+                    date, category, amount, description = parts
+                    if category == filter_cat:
+                         found = True
+                         try:
+                             amount_val = float(amount)
+                             total_filtered += amount_val
+                         except ValueError:
+                             amount_val = 0.0
+                         print(f"{date:<12} | {category:<15} | {amount_val:<10.2f} | {description:<20}")
+        if not found:
+             print("No expenses found in this category.")
+        print("-" * 60)
+        print(f"Subtotal for {filter_cat}: {total_filtered:.2f}")
+        print("-" * 60)
+    except Exception as error:
+        print("Error reading file:", error)
 
 def clear_expenses():
-    # TODO 11: Ask the user for a final confirmation (yes/no) to clear logs.
-    #          - If confirmed, delete the EXPENSES_FILE using os.remove() inside a try-except block.
-    pass
+    # Ask for confirmation before deleting data
+    if get_yes_no_input("Are you sure you want to clear all expense logs? (y/n): "):
+        try:
+            if os.path.exists(EXPENSES_FILE):
+                os.remove(EXPENSES_FILE)
+                print("Expense logs cleared successfully!")
+            else:
+                print("No expense log file to clear.")
+        except Exception as error:
+            print("Error deleting file:", error)
 
 def main():
     while True:
@@ -61,14 +175,20 @@ def main():
         print("5. Exit")
         print("=" * 45)
         
-        # TODO 12: Get user choice and redirect to the corresponding functions.
-        #          - choice '1' -> add_expense()
-        #          - choice '2' -> view_expenses()
-        #          - choice '3' -> filter_expenses()
-        #          - choice '4' -> clear_expenses()
-        #          - choice '5' -> print goodbye and break loop
-        #          - Any other input -> print error and repeat
-        pass
+        choice = input("Enter your choice (1-5): ")
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            view_expenses()
+        elif choice == "3":
+            filter_expenses()
+        elif choice == "4":
+            clear_expenses()
+        elif choice == "5":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
 
 if __name__ == "__main__":
     main()
