@@ -32,8 +32,8 @@ Key Concepts:
 
 [Task 1: Creating & Importing Custom Modules]
 Files: 
-- Custom Module: `02_python_core/06_modules_packages/my_math.py`
-- Main Program:  `02_python_core/06_modules_packages/main_program.py`
+- Custom Module: `02_python_core/07_modules_packages/my_math.py`
+- Main Program:  `02_python_core/07_modules_packages/main_program.py`
 
 Steps to complete:
 1. Open `my_math.py` and write three functions:

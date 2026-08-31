@@ -1,4 +1,4 @@
-# Question 17: Useful String Methods (.lower(), .upper(), .strip(), .split(), .replace())
+# Question 9: Useful String Methods (.lower(), .upper(), .strip(), .split(), .replace())
 #
 # Problem Statement:
 # Clean up messy user input and analyze text using string methods.

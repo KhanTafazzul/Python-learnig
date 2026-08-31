@@ -28,4 +28,4 @@ def safe_read(file_path):
 # Test calls
 safe_divide(10, 2)
 safe_divide(10, 0)
-safe_read("02_python_core/exception_handling/test.txt")
+safe_read("02_python_core/04_exception_handling/test.txt")

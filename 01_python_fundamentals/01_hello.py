@@ -1,26 +1,11 @@
-# Question 1: Hello & Dictionary Operations
+# Question 1: Hello World
 #
 # Problem Statement:
-# Create a dictionary to store a student's basic details (name, age, branch).
-# Access specific values using keys, update an existing value, and add a new key-value pair.
+# Write a Python program that prints a greeting message "Hello, World!" to the screen.
 #
 # Tasks to complete:
-# 1. Create a dictionary `student` with keys `"name"`, `"age"`, and `"branch"`.
-# 2. Print the student's name using dictionary indexing.
-# 3. Update the student's age and add a new key `"city"`.
-# 4. Print the updated dictionary.
+# 1. Use the print() function to output "Hello, World!".
 #
 # Write your code below this line:
 
-student = {
-    "name": "Khan",
-    "age": 18,
-    "branch": "B.Tech"
-}
-
-print(student["name"])
-
-student["age"] = 19
-student["city"] = "Delhi"
-
-print(student)
+print("Hello, World!")

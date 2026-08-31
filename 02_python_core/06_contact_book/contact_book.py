@@ -1,6 +1,6 @@
 import os
 
-CONTACTS_FILE = "02_python_core/05_contact_book/contacts.txt"
+CONTACTS_FILE = "02_python_core/06_contact_book/contacts.txt"
 
 def add_contact():
     print("\n--- Add New Contact ---")

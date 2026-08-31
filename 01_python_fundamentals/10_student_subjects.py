@@ -1,4 +1,4 @@
-# Question 9: List Operations & Index Replacement
+# Question 10: List Operations & Index Replacement
 #
 # Problem Statement:
 # Practice fundamental list manipulations: indexing, appending new elements,

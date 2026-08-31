@@ -1,4 +1,4 @@
-# Question 14: Subject Marks Dictionary & Iteration
+# Question 17: Subject Marks Dictionary & Iteration
 #
 # Problem Statement:
 # Store subject names and marks in a dictionary using a loop, iterate through items,

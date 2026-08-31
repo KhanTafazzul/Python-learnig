@@ -7,7 +7,7 @@ This file contains detailed notes from the start of the course up to Flask and c
 ## 📚 Quick Notes of Core Learning Modules
 Here is a quick summary of the core Python learning modules in the course. For complete definitions, syntaxes, and examples, refer to their dedicated files:
 
-### 1. 🔢 [01: Operators](file:///d:/Aman/pythonbasics/notes/01_operators.md)
+### 1. 🔢 [01: Operators](01_operators.md)
 *   **What it does:** Performs calculations, checks conditions, and modifies variables.
 *   **Summary:** Covers Arithmetic (`+`, `-`, `*`, `/`, `%`, `**`, `//`), Comparison (`==`, `!=`, `>`, `<`), Logical (`and`, `or`, `not`), Assignment (`+=`, `-=`), Membership (`in`), and Identity (`is`).
 *   **Quick Syntax:**
@@ -17,7 +17,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
     is_valid = x > 12 and x is not None
     ```
 
-### 2. 🔁 [02: Loops & Control Flow](file:///d:/Aman/pythonbasics/notes/02_loops_control_flow.md)
+### 2. 🔁 [02: Loops & Control Flow](02_loops_control_flow.md)
 *   **What it does:** Decision making and repeating code execution blocks.
 *   **Summary:** Covers conditional tests (`if/elif/else`), running fixed-count iterations (`for` loops), running condition-based loops (`while`), and changing loop behaviors (`break` and `continue`).
 *   **Quick Syntax:**
@@ -28,7 +28,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
         print(i)
     ```
 
-### 3. 🔤 [03: String Methods](file:///d:/Aman/pythonbasics/notes/03_string_methods.md)
+### 3. 🔤 [03: String Methods](03_string_methods.md)
 *   **What it does:** Processes, formats, and transforms string text.
 *   **Summary:** Covers lowercase (`.lower()`), uppercase (`.upper()`), capitalizations (`.title()`, `.capitalize()`), trimming whitespace (`.strip()`), searching (`.startswith()`, `.find()`), and splitting/joining (`.split()`, `.join()`).
 *   **Quick Syntax:**
@@ -37,7 +37,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
     clean_text = text.strip().title()  # Output: "Python Programming"
     ```
 
-### 4. 🛠️ [04: Custom Functions & Scope](file:///d:/Aman/pythonbasics/notes/04_custom_functions.md)
+### 4. 🛠️ [04: Custom Functions & Scope](04_custom_functions.md)
 *   **What it does:** Creates reusable code blocks with custom parameters, arguments, dynamic inputs (`*args`/`**kwargs`), and handles variable scope.
 *   **Summary:** Covers function definitions (`def`), inputs (positional/keyword args, defaults), return statements, variable scope (local vs global, and the `global` keyword).
 *   **Quick Syntax:**
@@ -47,7 +47,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
     print(calc_square(5))  # Output: 25
     ```
 
-### 5. 🧮 [05: Math Functions](file:///d:/Aman/pythonbasics/notes/05_math_functions.md)
+### 5. 🧮 [05: Math Functions](05_math_functions.md)
 *   **What it does:** Provides built-in and external mathematical methods.
 *   **Summary:** Covers built-in arithmetic (`abs()`, `sum()`, `min()`, `max()`, `divmod()`, `round()`), power/roots (`math.sqrt()`, `pow()`), rounding limits (`math.ceil()`, `math.floor()`, `math.trunc()`), geometry/trigonometry, precision comparisons (`math.isclose()`), and combinations (`math.comb()`).
 *   **Quick Syntax:**
@@ -57,7 +57,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
     print(math.isclose(0.1 + 0.2, 0.3))  # Output: True
     ```
 
-### 6. 📦 [06: Data Structures](file:///d:/Aman/pythonbasics/notes/06_data_structures.md)
+### 6. 📦 [06: Data Structures](06_data_structures.md)
 *   **What it does:** Stores, groups, and maps multiple items.
 *   **Summary:** Covers ordered/mutable Lists (`[]`), ordered/immutable Tuples (`()`), key-value Dictionaries (`{}`), and unique-value Sets (`{}`).
 *   **Quick Syntax:**
@@ -66,7 +66,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
     unique_numbers = {1, 2, 2, 3}  # Output set: {1, 2, 3}
     ```
 
-### 7. 📁 [07: File Handling](file:///d:/Aman/pythonbasics/notes/07_file_handling.md)
+### 7. 📁 [07: File Handling](07_file_handling.md)
 *   **What it does:** Reads data from or writes data permanently to storage files.
 *   **Summary:** Covers open modes (Write `'w'`, Read `'r'`, Append `'a'`), line-by-line reading, and using `with open(...) as file:` to guarantee automatic closing of resources.
 *   **Quick Syntax:**
@@ -75,7 +75,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
         file.write("Aman,12345,aman@test.com\n")
     ```
 
-### 8. 🛡️ [08: Exception Handling](file:///d:/Aman/pythonbasics/notes/08_exception_handling.md)
+### 8. 🛡️ [08: Exception Handling](08_exception_handling.md)
 *   **What it does:** Safely catches runtime errors so programs run continuously without crash.
 *   **Summary:** Covers `try` (run risky code), `except` (catch specific errors), `else` (run if no error occurred), and `finally` (always execute at the end).
 *   **Quick Syntax:**
@@ -86,7 +86,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
         print("Error: Invalid numeric input.")
     ```
 
-### 9. 🛠️ [09: Modules & Environments](file:///d:/Aman/pythonbasics/notes/09_modules_environments.md)
+### 9. 🛠️ [09: Modules & Environments](09_modules_environments.md)
 *   **What it does:** Code partitioning (import/export), setting up isolated folders, and package installations.
 *   **Summary:** Covers modular imports (`import math`), creating isolated virtual environments (`venv`), installing third-party packages (`pip install`), and exporting package listings (`pip freeze > requirements.txt`).
 *   **Quick Syntax:**
@@ -96,7 +96,7 @@ Here is a quick summary of the core Python learning modules in the course. For c
     pip install colorama
     ```
 
-### 10. 🧪 [10: Standard Libraries](file:///d:/Aman/pythonbasics/notes/10_standard_libraries.md)
+### 10. 🧪 [10: Standard Libraries](10_standard_libraries.md)
 *   **What it does:** Provides detailed reference guides for standard modules (`random` and `datetime`).
 *   **Summary:** Generating random numbers/items, formatting dates and times, and time calculations.
 *   **Quick Syntax:**
@@ -335,7 +335,7 @@ Helps manage variable access and prevent accidental data overwrites.
 ---
 
 # 6. Step 5: Math Functions
-*(Included in general Functions & Modules. Reference: [05_math_functions.md](file:///d:/Aman/pythonbasics/notes/05_math_functions.md) for full guide).*
+*(Included in general Functions & Modules. Reference: [05_math_functions.md](05_math_functions.md) for full guide).*
 
 ---
 

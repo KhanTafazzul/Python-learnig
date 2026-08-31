@@ -31,7 +31,50 @@ finally:
 
 ---
 
-## 2. Common Built-in Exceptions
+## 2. The `raise` Statement (Triggering Custom Errors)
+
+Sometimes, you need to manually force an error to occur because a user input breaks a business rule, even if it is mathematically valid in Python. You do this using the `raise` keyword.
+
+*   **Syntax:** `raise ExceptionType("Custom message")`
+*   **Why use it?** To stop execution immediately when invalid data is detected (e.g. negative age, empty password settings).
+
+### Example:
+```python
+def check_age(age):
+    if age < 0:
+        # Trigger an error manually
+        raise ValueError("Age cannot be negative!")
+    print(f"Age is set to {age}.")
+
+try:
+    check_age(-5)
+except ValueError as e:
+    print(f"Caught an error: {e}")
+# Output: Caught an error: Age cannot be negative!
+```
+
+---
+
+## 3. Difference Between `raise` and Exception Handling
+
+It is important to distinguish between **triggering** a problem and **solving** a problem:
+
+*   **`raise` is like a Fire Alarm:** It signals that a rule is broken and triggers an error state, halting execution.
+*   **Exception Handling (`try-except`) is like Firefighters:** It catches the error state, resolves it (e.g., asks the user to try again), and keeps the program from crashing.
+
+### Comparison Table:
+
+| Component | Keyword / Block | Purpose | Example / Use Case |
+| :--- | :--- | :--- | :--- |
+| **Triggering** | `raise` | Forces an error to occur immediately. | `raise ValueError("Invalid range!")` |
+| **Guarding** | `try` | Wraps risky code that might crash. | `try: number = int(input())` |
+| **Handling** | `except` | Catches and handles a specific error. | `except ValueError: print("Enter numbers only!")` |
+| **Successful Path**| `else` | Runs only if no errors occurred in `try`. | Printing results or database commit. |
+| **Cleanup** | `finally` | Always runs, regardless of success or crash. | Closing open files or database connections. |
+
+---
+
+## 4. Common Built-in Exceptions
 
 * **`ValueError`**: A function receives an argument of the correct type but inappropriate value.
   * *Example:* `int("abc")` (Converting letters to an integer).
@@ -48,7 +91,7 @@ finally:
 
 ---
 
-## 3. Practice Examples
+## 5. Practice Examples
 
 ### Safe Division Function
 ```python

@@ -1,4 +1,4 @@
-# Question 22: Shopping Cart & Billing System (Lists, Dictionaries & Loops)
+# Question 23: Shopping Cart & Billing System (Lists, Dictionaries & Loops)
 #
 # Problem Statement:
 # Create an interactive shopping cart system for a grocery store.

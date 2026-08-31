@@ -1,4 +1,4 @@
-# Question 10: Introduction to Functions (`def`, parameters & `return`)
+# Question 12: Introduction to Functions (`def`, parameters & `return`)
 #
 # Problem Statement:
 # Learn basic function creation by defining a greeting function and a boolean function to check even numbers.

@@ -1,4 +1,4 @@
-# Question 20: Number Guessing Game (Loops, Conditions & Random Module)
+# Question 21: Number Guessing Game (Loops, Conditions & Random Module)
 #
 # Problem Statement:
 # Create an interactive game where the computer picks a random secret number between 1 and 100, 

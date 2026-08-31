@@ -1,4 +1,4 @@
-# Question 18: List Operations (.append(), .pop(), .sort(), `in` check)
+# Question 11: List Operations (.append(), .pop(), .sort(), `in` check)
 #
 # Problem Statement:
 # Build a Student Marks & Guest List Manager that uses common list methods.

@@ -1,4 +1,4 @@
-# Question 21: Multiple-Choice Quiz Game (Lists, Dictionaries & Loops)
+# Question 22: Multiple-Choice Quiz Game (Lists, Dictionaries & Loops)
 #
 # Problem Statement:
 # Create a multiple-choice quiz game that asks the user 3 questions, tracks their score,
