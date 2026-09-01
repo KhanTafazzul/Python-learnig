@@ -65,7 +65,8 @@ Organized study notes across all stages of your learning in sequential order:
     *   *Content:* The complete consolidated syllabus summary, including HTML/CSS, JavaScript, and Flask web backend development notes.
 
 ### 🌐 2. Web, Frontend & Backend Notes
-*   📄 **[02_html_css_notes](notes/02_html_css_notes/README.md)** — Month 3: Semantic HTML5, CSS Selectors, Flexbox, Grid & Responsive Design.
+*   📄 **[01_What_HTML.md](notes/02_html_css_notes/01_What_HTML.md)** — Month 3: What is HTML, Web Pillars, Pros/Cons, SEO, & Skeleton Boilerplate.
+*   📄 **[02_html_tags_syntax.md](notes/02_html_css_notes/02_html_tags_syntax.md)** — Month 3: Complete reference of all HTML5 semantic tags, texts, lists, tables, media & forms.
 *   📄 **[03_javascript_notes](notes/03_javascript_notes/README.md)** — Month 4: ES6+ Syntax, Functions, DOM Manipulation, Events & Fetch API.
 *   📄 **[04_flask_notes](notes/04_flask_notes/README.md)** — Month 5: Routes, Jinja2 Templates, Forms, SQLite CRUD & REST APIs.
 
@@ -192,6 +193,8 @@ pythonbasics/
     │   ├── 12_algorithm_logic.md
     │   └── full_course.md
     ├── 02_html_css_notes/      # HTML5 & CSS3 Reference Notes
+    │   ├── 01_What_HTML.md
+    │   └── 02_html_tags_syntax.md
     ├── 03_javascript_notes/    # JavaScript & DOM Reference Notes
     └── 04_flask_notes/         # Flask & Backend Reference Notes
 ```
