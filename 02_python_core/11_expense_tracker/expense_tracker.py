@@ -36,7 +36,7 @@ def add_expense():
         
     # 3. Ask user for category choice and validate selection
     try:
-        cat_choice = int(input("Select a category (1-6): "))
+        cat_choice = int(input(f"Select a category (1-{len(CATEGORIES)}): "))
         if cat_choice < 1 or cat_choice > len(CATEGORIES):
             print("Invalid category selection.")
             return
@@ -113,7 +113,7 @@ def filter_expenses():
         print(f"{i + 1}. {CATEGORIES[i]}")
         
     try:
-        cat_choice = int(input("Select category to filter by (1-6): "))
+        cat_choice = int(input(f"Select category to filter by (1-{len(CATEGORIES)}): "))
         if cat_choice < 1 or cat_choice > len(CATEGORIES):
             print("Invalid category selection.")
             return
