@@ -237,8 +237,52 @@ HTML5 introduced **Semantic Landmark Tags**:
 > * If the content could be shared as an independent post on social media or in an RSS feed, use **`<article>`**.  
 > * If it is just a subsection of a larger page grouped by topic, use **`<section>`**.
 
-#### 6. `<aside>`
-* **What it does**: Contains content tangentially related to the main topic (sidebars, callout boxes, related article links, advertisements).
+#### 6. `<aside>` (Secondary, Supplementary & Sidebar Content)
+* **What it does**: Represents content that is **secondary, supportive, or indirectly related** to the main content surrounding it. If you removed the `<aside>` completely, the main article would still make 100% complete sense on its own.
+* **The Magazine / Textbook Analogy**:
+  * In a science textbook, the main page explains how rockets work (`<main>` / `<article>`).
+  * In the corner of the page, there is a small colored box titled *"Did You Know? The Saturn V rocket stood 363 feet tall!"* That highlighted side-box is an **`<aside>`**.
+* **Common Real-World Use Cases**:
+  1. **Author Bio Box**: A card at the end of a blog post showing the writer's picture and bio.
+  2. **Sidebars**: A column next to a blog article containing "Related Articles", "Popular Posts", or category tags.
+  3. **Callout / Note Boxes**: Highlighting a glossary definition, fun fact, or warning tip.
+  4. **Advertisements & Sponsors**: Banner ads placed on the side of a news webpage.
+  5. **Shopping Filters**: A sidebar on Amazon containing checkboxes to filter products by price, brand, and customer ratings.
+
+* **Practical Code Example**:
+  ```html
+  <main>
+    <!-- Main Article -->
+    <article>
+      <h2>Getting Started with Python</h2>
+      <p>Python is an interpreted, high-level, general-purpose programming language...</p>
+    </article>
+
+    <!-- Sidebar with Secondary Content -->
+    <aside>
+      <h3>About the Author</h3>
+      <p>Aman is a full-stack developer passionate about building web apps.</p>
+
+      <h3>Related Topics</h3>
+      <ul>
+        <li><a href="#">Python Virtual Environments</a></li>
+        <li><a href="#">Flask Web Development</a></li>
+      </ul>
+    </aside>
+  </main>
+  ```
+* **Visual Representation**:
+  ```text
+  ┌─────────────────────────────────────────────────────────────┐
+  │                         <main>                              │
+  │  ┌─────────────────────────────────┐  ┌──────────────────┐  │
+  │  │           <article>             │  │     <aside>      │  │
+  │  │  (The Core Main Story/Article)  │  │  (Author bio,    │  │
+  │  │  "Getting Started with Python"  │  │   Related links, │  │
+  │  │                                 │  │   Fun facts)     │  │
+  │  └─────────────────────────────────┘  └──────────────────┘  │
+  └─────────────────────────────────────────────────────────────┘
+  ```
 
 #### 7. `<footer>`
 * **What it does**: The bottom section of a page or article. Contains copyright notes, privacy policy links, sitemaps, and author credits.
@@ -357,55 +401,173 @@ Used for term-definition pairs (dictionaries, glossaries, product metadata, FAQs
 
 ## 7. Structured Data Tables
 
-Tables display structured, grid-based information (like financial sheets, schedules, or report cards).
+Tables are used to display structured, grid-based data—such as price lists, timetables, sports scores, and financial reports.
+
+---
+
+### 7.1 The Fundamental Mental Model: Tables Are Built "Row-by-Row"
+
+> 🧠 **The Golden Rule**: In HTML, **there is NO `<column>` tag!**  
+> You construct tables horizontally, **one row (`<tr>`) at a time**, from top to bottom. Inside each row, you place individual cells (`<th>` or `<td>`) from left to right. The browser automatically aligns the cells vertically to create the columns.
+
+```text
+Table Construction Flow:
+┌─────────────────────────────────────────────────────────────┐
+│ <table>                                                     │
+│   <caption>Course Pricing Table</caption>                   │
+│   <thead>                                                   │
+│     <tr> ───► [ <th> Course </th> ][ <th> Price </th> ]     │ Row 1 (Header)
+│   </thead>                                                  │
+│   <tbody>                                                   │
+│     <tr> ───► [ <td> Python </td> ][ <td> $50   </td> ]     │ Row 2 (Data)
+│     <tr> ───► [ <td> HTML   </td> ][ <td> $30   </td> ]     │ Row 3 (Data)
+│   </tbody>                                                  │
+│   <tfoot>                                                   │
+│     <tr> ───► [ <td> Total  </td> ][ <td> $80   </td> ]     │ Row 4 (Footer)
+│   </tfoot>                                                  │
+│ </table>                                                    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 7.2 In-Depth Breakdown of Every Table Tag
+
+#### 1. `<table>`
+* **What it does**: The master container that wraps all rows, headers, and cells.
+* **Key Attribute**: `border="1"` (used in basic HTML to draw borders around cells; in real projects, borders are styled cleanly using CSS).
+
+#### 2. `<caption>`
+* **What it does**: The visible title of the table placed directly above the grid.
+* **Why it matters**: Screen readers for visually impaired users announce the `<caption>` first so the user immediately knows what data the table contains before listening to individual cells.
+
+#### 3. `<thead>` (Table Header Container)
+* **What it does**: Semantically wraps the top row(s) containing the column titles.
+* **Why it matters**: When printing long multi-page documents, browsers repeat the `<thead>` at the top of every printed page.
+
+#### 4. `<tbody>` (Table Body Container)
+* **What it does**: Semantically wraps all the main data records of the table.
+
+#### 5. `<tfoot>` (Table Footer Container)
+* **What it does**: Semantically wraps summary, total, average, or footnote rows at the bottom of the table.
+
+#### 6. `<tr>` (Table Row)
+* **What it does**: Represents a single horizontal line of cells across the table.
+* **Rule**: Every single piece of text in a table **must** be inside a `<th>` or `<td>`, which in turn **must** be inside a `<tr>`.
+
+#### 7. `<th>` (Table Header Cell)
+* **What it does**: Defines a cell that serves as a title for an entire column or row.
+* **Browser Default Style**: Rendered **bold** and **centered**.
+* **Accessibility**: Screen readers associate all data cells below a `<th>` with that column's name.
+
+#### 8. `<td>` (Table Data Cell)
+* **What it does**: Defines a standard cell holding regular data values (numbers, text, links).
+* **Browser Default Style**: Rendered in **normal regular font** and **left-aligned**.
+
+---
+
+### 7.3 Mastering Cell Merging: `colspan` vs. `rowspan`
+
+Just like the **"Merge Cells"** feature in Microsoft Excel or Google Sheets, HTML allows you to stretch a single cell across multiple columns or rows.
+
+---
+
+#### 🅰️ `colspan` (Column Span — Horizontal Merge)
+* **What it means**: Stretches a single cell horizontally across **multiple columns** on the *same row*.
+* **Syntax**: `<td colspan="2">` (Stretches across 2 column spaces).
+* **The Math Rule**: If your table has 3 columns total, and one cell has `colspan="2"`, that row only needs **one other cell** (2 + 1 = 3 columns total).
+
+```text
+Visualizing colspan="2":
+┌───────────────────────┬───────────────┐
+│     colspan="2"       │  Normal Cell  │  Total = 3 Column Width
+│ (Merged across 2 cols)│     <td>      │
+└───────────────────────┴───────────────┘
+```
+
+---
+
+#### 🅱️ `rowspan` (Row Span — Vertical Merge)
+* **What it means**: Stretches a single cell vertically downwards across **multiple rows**.
+* **Syntax**: `<td rowspan="2">` (Stretches down across 2 rows).
+* **The Math Rule**: Because the cell in Row 1 stretches down into Row 2, **Row 2 must have 1 fewer `<td>`**, otherwise the table will overflow and look distorted!
+
+```text
+Visualizing rowspan="2":
+┌───────────────┬───────────────┐
+│ rowspan="2"   │ Row 1 Cell    │
+│ (Merged down  ├───────────────┤
+│ across 2 rows)│ Row 2 Cell    │  <-- Row 2 only has 1 cell written in code!
+└───────────────┴───────────────┘
+```
+
+---
+
+### 7.4 Complete Step-by-Step Code Example (with `colspan` & `rowspan`)
 
 ```html
 <table border="1">
-  <caption>Course Schedule & Syllabus</caption>
+  <caption>Student Term Grades & Attendance</caption>
+
+  <!-- Table Head: Column Titles -->
   <thead>
     <tr>
-      <th>Month</th>
-      <th>Topic</th>
-      <th>Key Project</th>
+      <th>Roll No</th>
+      <th>Student Name</th>
+      <th>Subject</th>
+      <th>Score</th>
     </tr>
   </thead>
+
+  <!-- Table Body: Student Records -->
   <tbody>
     <tr>
-      <td>Month 1</td>
-      <td>Python Foundations</td>
-      <td>Calculator & Quiz</td>
+      <!-- This student has 2 subjects, so we merge their Roll No and Name vertically across 2 rows -->
+      <td rowspan="2">101</td>
+      <td rowspan="2">Aman</td>
+      <td>Python</td>
+      <td>95</td>
     </tr>
     <tr>
-      <td>Month 2</td>
-      <td>Core Python & Files</td>
-      <td>Expense Tracker</td>
-    </tr>
-    <tr>
-      <td>Month 3</td>
+      <!-- Notice: Roll No & Name are skipped here because Row 1 stretched down into this row! -->
       <td>HTML & CSS</td>
-      <td>Portfolio Website</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Sarah</td>
+      <td>JavaScript</td>
+      <td>88</td>
     </tr>
   </tbody>
+
+  <!-- Table Foot: Summary / Totals -->
   <tfoot>
     <tr>
-      <td colspan="2"><strong>Total Duration</strong></td>
-      <td><strong>3 Months</strong></td>
+      <!-- Merge 3 columns horizontally for the summary label -->
+      <td colspan="3"><strong>Overall Average Score</strong></td>
+      <td><strong>91.0</strong></td>
     </tr>
   </tfoot>
 </table>
 ```
 
-### Breakdown of Table Tags:
-* `<table>`: Table wrapper.
-* `<caption>`: Accessible title/summary for the table.
-* `<thead>`: Wraps the table's header row(s).
-* `<tbody>`: Wraps the main data rows.
-* `<tfoot>`: Wraps summary, totals, or footer rows.
-* `<tr>` (Table Row): Represents a single horizontal row.
-* `<th>` (Table Header): Defines a column header cell (rendered **bold and centered**).
-* `<td>` (Table Data): Standard data cell.
-* `colspan="2"`: Merges a cell across **2 columns**.
-* `rowspan="2"`: Merges a cell across **2 vertical rows**.
+#### 🖥️ Browser Render Simulation:
+```text
+┌──────────────────────────────────────────────────────────────┐
+│             Student Term Grades & Attendance                 │
+├─────────┬──────────────────┬──────────────────┬──────────────┤
+│ Roll No │ Student Name     │ Subject          │ Score        │
+├─────────┼──────────────────┼──────────────────┼──────────────┤
+│         │                  │ Python           │ 95           │
+│ 101     │ Aman             ├──────────────────┼──────────────┤
+│         │                  │ HTML & CSS       │ 90           │
+├─────────┼──────────────────┼──────────────────┼──────────────┤
+│ 102     │ Sarah            │ JavaScript       │ 88           │
+├─────────┴──────────────────┴──────────────────┼──────────────┤
+│ Overall Average Score                         │ 91.0         │
+└───────────────────────────────────────────────┴──────────────┘
+```
 
 ---
 
